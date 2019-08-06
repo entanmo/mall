@@ -1,0 +1,872 @@
+2019-08-05 15:51:00,221 INFO [restartedMain] org.linlinjava.litemall.Application [StartupInfoLogger.java : 50] Starting Application on DESKTOP-SCRUMO0 with PID 29644 (F:\litemall-master\litemall-all\target\classes started by Thinkpad in F:\litemall-master\litemall-all)
+2019-08-05 15:51:00,234 DEBUG [restartedMain] org.linlinjava.litemall.Application [StartupInfoLogger.java : 53] Running with Spring Boot v2.1.5.RELEASE, Spring v5.1.7.RELEASE
+2019-08-05 15:51:00,236 INFO [restartedMain] org.linlinjava.litemall.Application [SpringApplication.java : 679] The following profiles are active: db,core,admin,wx
+2019-08-05 15:51:07,824 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, key_name, key_value, add_time, update_time, deleted from litemall_system WHERE ( deleted = ? ) 
+2019-08-05 15:51:08,053 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: false(Boolean)
+2019-08-05 15:51:08,099 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 16
+2019-08-05 15:51:08,104 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 42] ==========================================================================================================================================================================================================
+2019-08-05 15:51:08,104 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 43] 
+2019-08-05 15:51:08,104 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 44]               Litemall 初始化信息
+2019-08-05 15:51:08,105 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 45] 
+2019-08-05 15:51:08,106 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 15:51:08,106 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  系统信息  ]]
+2019-08-05 15:51:08,106 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 15:51:08,107 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     服务器端口        ->        8080
+2019-08-05 15:51:08,107 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     数据库USER        ->        litemall
+2019-08-05 15:51:08,107 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     数据库地址        ->        jdbc:mysql://localhost:3306/litemall?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+2019-08-05 15:51:08,107 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 15:51:08,107 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  模块状态  ]]
+2019-08-05 15:51:08,108 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 15:51:08,108 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     邮件        ->        false
+2019-08-05 15:51:08,109 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     短信        ->        false
+2019-08-05 15:51:08,109 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     模版消息        ->        false
+2019-08-05 15:51:08,109 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     快递信息        ->        false
+2019-08-05 15:51:08,110 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     快递鸟ID        ->        XXXXXXXXX
+2019-08-05 15:51:08,110 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     对象存储        ->        local
+2019-08-05 15:51:08,110 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     本地对象存储路径        ->        storage
+2019-08-05 15:51:08,111 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     本地对象访问地址        ->        http://192.168.2.6:8080/wx/storage/fetch/
+2019-08-05 15:51:08,111 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 15:51:08,111 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  微信相关  ]]
+2019-08-05 15:51:08,112 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 15:51:08,112 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信APP KEY        ->        wxa5b486c6b918ecfb
+2019-08-05 15:51:08,112 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信APP-SECRET        ->        e04004829d4c383b4db7769d88dfbca1
+2019-08-05 15:51:08,113 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付MCH-ID        ->        111111
+2019-08-05 15:51:08,113 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付MCH-KEY        ->        xxxxxx
+2019-08-05 15:51:08,113 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付通知地址        ->        http://www.example.com/wx/order/pay-notify
+2019-08-05 15:51:08,114 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 15:51:08,114 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  系统设置  ]]
+2019-08-05 15:51:08,114 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 15:51:08,114 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     自动创建朋友圈分享图        ->        true
+2019-08-05 15:51:08,114 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     商场名称        ->        litemall大商场
+2019-08-05 15:51:08,115 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     首页显示记录数：NEW,HOT,BRAND,TOPIC,CatlogList,CatlogMore        ->        10,6,4,4,4,4
+2019-08-05 15:51:08,115 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 49]   
+2019-08-05 15:51:08,115 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 50] ==========================================================================================================================================================================================================
+2019-08-05 15:51:08,893 ERROR [restartedMain] o.m.spring.mapper.MapperFactoryBean [MapperFactoryBean.java : 82] Error while adding the mapper 'interface org.linlinjava.litemall.db.dao.LitemallUserMapper' to configuration.
+org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.loadXmlResource(MapperAnnotationBuilder.java:173)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.parse(MapperAnnotationBuilder.java:124)
+	at org.apache.ibatis.binding.MapperRegistry.addMapper(MapperRegistry.java:72)
+	at org.apache.ibatis.session.Configuration.addMapper(Configuration.java:741)
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:80)
+	at org.springframework.dao.support.DaoSupport.afterPropertiesSet(DaoSupport.java:44)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1248)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1168)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:636)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:180)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:843)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at org.linlinjava.litemall.Application.main(Application.java:16)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.buildParameterMapping(SqlSourceBuilder.java:117)
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.handleToken(SqlSourceBuilder.java:67)
+	at org.apache.ibatis.parsing.GenericTokenParser.parse(GenericTokenParser.java:78)
+	at org.apache.ibatis.builder.SqlSourceBuilder.parse(SqlSourceBuilder.java:45)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:46)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:40)
+	at org.apache.ibatis.scripting.xmltags.XMLScriptBuilder.parseScriptNode(XMLScriptBuilder.java:72)
+	at org.apache.ibatis.scripting.xmltags.XMLLanguageDriver.createSqlSource(XMLLanguageDriver.java:44)
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:94)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:135)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:128)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)
+	... 46 common frames omitted
+2019-08-05 15:51:08,927 ERROR [restartedMain] o.s.boot.SpringApplication [SpringApplication.java : 858] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'litemallUserService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'litemallUserMapper' defined in file [F:\litemall-master\litemall-db\target\classes\org\linlinjava\litemall\db\dao\LitemallUserMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:324)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:843)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at org.linlinjava.litemall.Application.main(Application.java:16)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'litemallUserMapper' defined in file [F:\litemall-master\litemall-db\target\classes\org\linlinjava\litemall\db\dao\LitemallUserMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1248)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1168)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:636)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:180)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321)
+	... 22 common frames omitted
+Caused by: java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:83)
+	at org.springframework.dao.support.DaoSupport.afterPropertiesSet(DaoSupport.java:44)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774)
+	... 37 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.loadXmlResource(MapperAnnotationBuilder.java:173)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.parse(MapperAnnotationBuilder.java:124)
+	at org.apache.ibatis.binding.MapperRegistry.addMapper(MapperRegistry.java:72)
+	at org.apache.ibatis.session.Configuration.addMapper(Configuration.java:741)
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:80)
+	... 40 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.buildParameterMapping(SqlSourceBuilder.java:117)
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.handleToken(SqlSourceBuilder.java:67)
+	at org.apache.ibatis.parsing.GenericTokenParser.parse(GenericTokenParser.java:78)
+	at org.apache.ibatis.builder.SqlSourceBuilder.parse(SqlSourceBuilder.java:45)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:46)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:40)
+	at org.apache.ibatis.scripting.xmltags.XMLScriptBuilder.parseScriptNode(XMLScriptBuilder.java:72)
+	at org.apache.ibatis.scripting.xmltags.XMLLanguageDriver.createSqlSource(XMLLanguageDriver.java:44)
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:94)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:135)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:128)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)
+	... 46 common frames omitted
+2019-08-05 15:57:25,082 INFO [restartedMain] org.linlinjava.litemall.Application [StartupInfoLogger.java : 50] Starting Application on DESKTOP-SCRUMO0 with PID 15304 (F:\litemall-master\litemall-all\target\classes started by Thinkpad in F:\litemall-master\litemall-all)
+2019-08-05 15:57:25,087 DEBUG [restartedMain] org.linlinjava.litemall.Application [StartupInfoLogger.java : 53] Running with Spring Boot v2.1.5.RELEASE, Spring v5.1.7.RELEASE
+2019-08-05 15:57:25,087 INFO [restartedMain] org.linlinjava.litemall.Application [SpringApplication.java : 679] The following profiles are active: db,core,admin,wx
+2019-08-05 15:57:31,630 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, key_name, key_value, add_time, update_time, deleted from litemall_system WHERE ( deleted = ? ) 
+2019-08-05 15:57:31,836 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: false(Boolean)
+2019-08-05 15:57:31,869 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 16
+2019-08-05 15:57:31,874 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 42] ==========================================================================================================================================================================================================
+2019-08-05 15:57:31,875 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 43] 
+2019-08-05 15:57:31,875 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 44]               Litemall 初始化信息
+2019-08-05 15:57:31,875 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 45] 
+2019-08-05 15:57:31,875 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 15:57:31,875 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  系统信息  ]]
+2019-08-05 15:57:31,875 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 15:57:31,876 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     服务器端口        ->        8080
+2019-08-05 15:57:31,876 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     数据库USER        ->        litemall
+2019-08-05 15:57:31,876 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     数据库地址        ->        jdbc:mysql://localhost:3306/litemall?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+2019-08-05 15:57:31,876 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 15:57:31,876 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  模块状态  ]]
+2019-08-05 15:57:31,876 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 15:57:31,877 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     邮件        ->        false
+2019-08-05 15:57:31,877 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     短信        ->        false
+2019-08-05 15:57:31,877 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     模版消息        ->        false
+2019-08-05 15:57:31,877 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     快递信息        ->        false
+2019-08-05 15:57:31,878 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     快递鸟ID        ->        XXXXXXXXX
+2019-08-05 15:57:31,878 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     对象存储        ->        local
+2019-08-05 15:57:31,878 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     本地对象存储路径        ->        storage
+2019-08-05 15:57:31,879 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     本地对象访问地址        ->        http://192.168.2.6:8080/wx/storage/fetch/
+2019-08-05 15:57:31,879 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 15:57:31,879 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  微信相关  ]]
+2019-08-05 15:57:31,879 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 15:57:31,879 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信APP KEY        ->        wxa5b486c6b918ecfb
+2019-08-05 15:57:31,880 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信APP-SECRET        ->        e04004829d4c383b4db7769d88dfbca1
+2019-08-05 15:57:31,881 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付MCH-ID        ->        111111
+2019-08-05 15:57:31,881 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付MCH-KEY        ->        xxxxxx
+2019-08-05 15:57:31,881 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付通知地址        ->        http://www.example.com/wx/order/pay-notify
+2019-08-05 15:57:31,882 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 15:57:31,882 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  系统设置  ]]
+2019-08-05 15:57:31,883 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 15:57:31,883 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     自动创建朋友圈分享图        ->        true
+2019-08-05 15:57:31,883 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     商场名称        ->        litemall大商场
+2019-08-05 15:57:31,883 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     首页显示记录数：NEW,HOT,BRAND,TOPIC,CatlogList,CatlogMore        ->        10,6,4,4,4,4
+2019-08-05 15:57:31,883 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 49]   
+2019-08-05 15:57:31,883 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 50] ==========================================================================================================================================================================================================
+2019-08-05 15:57:33,000 ERROR [restartedMain] o.m.spring.mapper.MapperFactoryBean [MapperFactoryBean.java : 82] Error while adding the mapper 'interface org.linlinjava.litemall.db.dao.LitemallUserMapper' to configuration.
+org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.loadXmlResource(MapperAnnotationBuilder.java:173)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.parse(MapperAnnotationBuilder.java:124)
+	at org.apache.ibatis.binding.MapperRegistry.addMapper(MapperRegistry.java:72)
+	at org.apache.ibatis.session.Configuration.addMapper(Configuration.java:741)
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:80)
+	at org.springframework.dao.support.DaoSupport.afterPropertiesSet(DaoSupport.java:44)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1248)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1168)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:636)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:180)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:843)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at org.linlinjava.litemall.Application.main(Application.java:16)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.buildParameterMapping(SqlSourceBuilder.java:117)
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.handleToken(SqlSourceBuilder.java:67)
+	at org.apache.ibatis.parsing.GenericTokenParser.parse(GenericTokenParser.java:78)
+	at org.apache.ibatis.builder.SqlSourceBuilder.parse(SqlSourceBuilder.java:45)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:46)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:40)
+	at org.apache.ibatis.scripting.xmltags.XMLScriptBuilder.parseScriptNode(XMLScriptBuilder.java:72)
+	at org.apache.ibatis.scripting.xmltags.XMLLanguageDriver.createSqlSource(XMLLanguageDriver.java:44)
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:94)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:135)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:128)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)
+	... 46 common frames omitted
+2019-08-05 15:57:33,081 ERROR [restartedMain] o.s.boot.SpringApplication [SpringApplication.java : 858] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'litemallUserService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'litemallUserMapper' defined in file [F:\litemall-master\litemall-db\target\classes\org\linlinjava\litemall\db\dao\LitemallUserMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:324)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:843)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at org.linlinjava.litemall.Application.main(Application.java:16)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'litemallUserMapper' defined in file [F:\litemall-master\litemall-db\target\classes\org\linlinjava\litemall\db\dao\LitemallUserMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1248)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1168)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:636)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:180)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321)
+	... 22 common frames omitted
+Caused by: java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:83)
+	at org.springframework.dao.support.DaoSupport.afterPropertiesSet(DaoSupport.java:44)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774)
+	... 37 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.loadXmlResource(MapperAnnotationBuilder.java:173)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.parse(MapperAnnotationBuilder.java:124)
+	at org.apache.ibatis.binding.MapperRegistry.addMapper(MapperRegistry.java:72)
+	at org.apache.ibatis.session.Configuration.addMapper(Configuration.java:741)
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:80)
+	... 40 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.buildParameterMapping(SqlSourceBuilder.java:117)
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.handleToken(SqlSourceBuilder.java:67)
+	at org.apache.ibatis.parsing.GenericTokenParser.parse(GenericTokenParser.java:78)
+	at org.apache.ibatis.builder.SqlSourceBuilder.parse(SqlSourceBuilder.java:45)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:46)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:40)
+	at org.apache.ibatis.scripting.xmltags.XMLScriptBuilder.parseScriptNode(XMLScriptBuilder.java:72)
+	at org.apache.ibatis.scripting.xmltags.XMLLanguageDriver.createSqlSource(XMLLanguageDriver.java:44)
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:94)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:135)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:128)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)
+	... 46 common frames omitted
+2019-08-05 16:24:17,434 INFO [restartedMain] org.linlinjava.litemall.Application [StartupInfoLogger.java : 50] Starting Application on DESKTOP-SCRUMO0 with PID 3252 (F:\litemall-master\litemall-all\target\classes started by Thinkpad in F:\litemall-master\litemall-all)
+2019-08-05 16:24:17,443 DEBUG [restartedMain] org.linlinjava.litemall.Application [StartupInfoLogger.java : 53] Running with Spring Boot v2.1.5.RELEASE, Spring v5.1.7.RELEASE
+2019-08-05 16:24:17,444 INFO [restartedMain] org.linlinjava.litemall.Application [SpringApplication.java : 679] The following profiles are active: db,core,admin,wx
+2019-08-05 16:24:23,472 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, key_name, key_value, add_time, update_time, deleted from litemall_system WHERE ( deleted = ? ) 
+2019-08-05 16:24:23,634 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: false(Boolean)
+2019-08-05 16:24:23,666 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 16
+2019-08-05 16:24:23,671 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 42] ==========================================================================================================================================================================================================
+2019-08-05 16:24:23,672 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 43] 
+2019-08-05 16:24:23,672 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 44]               Litemall 初始化信息
+2019-08-05 16:24:23,672 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 45] 
+2019-08-05 16:24:23,672 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 16:24:23,673 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  系统信息  ]]
+2019-08-05 16:24:23,673 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 16:24:23,673 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     服务器端口        ->        8080
+2019-08-05 16:24:23,673 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     数据库USER        ->        litemall
+2019-08-05 16:24:23,673 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     数据库地址        ->        jdbc:mysql://localhost:3306/litemall?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+2019-08-05 16:24:23,674 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 16:24:23,674 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  模块状态  ]]
+2019-08-05 16:24:23,674 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 16:24:23,674 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     邮件        ->        false
+2019-08-05 16:24:23,675 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     短信        ->        false
+2019-08-05 16:24:23,675 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     模版消息        ->        false
+2019-08-05 16:24:23,675 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     快递信息        ->        false
+2019-08-05 16:24:23,675 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     快递鸟ID        ->        XXXXXXXXX
+2019-08-05 16:24:23,676 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     对象存储        ->        local
+2019-08-05 16:24:23,676 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     本地对象存储路径        ->        storage
+2019-08-05 16:24:23,677 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     本地对象访问地址        ->        http://192.168.2.6:8080/wx/storage/fetch/
+2019-08-05 16:24:23,677 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 16:24:23,677 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  微信相关  ]]
+2019-08-05 16:24:23,677 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 16:24:23,678 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信APP KEY        ->        wxa5b486c6b918ecfb
+2019-08-05 16:24:23,678 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信APP-SECRET        ->        e04004829d4c383b4db7769d88dfbca1
+2019-08-05 16:24:23,678 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付MCH-ID        ->        111111
+2019-08-05 16:24:23,678 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付MCH-KEY        ->        xxxxxx
+2019-08-05 16:24:23,679 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付通知地址        ->        http://www.example.com/wx/order/pay-notify
+2019-08-05 16:24:23,679 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 16:24:23,679 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  系统设置  ]]
+2019-08-05 16:24:23,680 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 16:24:23,680 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     自动创建朋友圈分享图        ->        true
+2019-08-05 16:24:23,680 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     商场名称        ->        litemall大商场
+2019-08-05 16:24:23,681 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     首页显示记录数：NEW,HOT,BRAND,TOPIC,CatlogList,CatlogMore        ->        10,6,4,4,4,4
+2019-08-05 16:24:23,681 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 49]   
+2019-08-05 16:24:23,681 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 50] ==========================================================================================================================================================================================================
+2019-08-05 16:24:24,415 ERROR [restartedMain] o.m.spring.mapper.MapperFactoryBean [MapperFactoryBean.java : 82] Error while adding the mapper 'interface org.linlinjava.litemall.db.dao.LitemallUserMapper' to configuration.
+org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.loadXmlResource(MapperAnnotationBuilder.java:173)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.parse(MapperAnnotationBuilder.java:124)
+	at org.apache.ibatis.binding.MapperRegistry.addMapper(MapperRegistry.java:72)
+	at org.apache.ibatis.session.Configuration.addMapper(Configuration.java:741)
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:80)
+	at org.springframework.dao.support.DaoSupport.afterPropertiesSet(DaoSupport.java:44)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1248)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1168)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:636)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:180)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:843)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at org.linlinjava.litemall.Application.main(Application.java:16)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.buildParameterMapping(SqlSourceBuilder.java:117)
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.handleToken(SqlSourceBuilder.java:67)
+	at org.apache.ibatis.parsing.GenericTokenParser.parse(GenericTokenParser.java:78)
+	at org.apache.ibatis.builder.SqlSourceBuilder.parse(SqlSourceBuilder.java:45)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:46)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:40)
+	at org.apache.ibatis.scripting.xmltags.XMLScriptBuilder.parseScriptNode(XMLScriptBuilder.java:72)
+	at org.apache.ibatis.scripting.xmltags.XMLLanguageDriver.createSqlSource(XMLLanguageDriver.java:44)
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:94)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:135)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:128)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)
+	... 46 common frames omitted
+2019-08-05 16:24:24,446 ERROR [restartedMain] o.s.boot.SpringApplication [SpringApplication.java : 858] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'litemallUserService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'litemallUserMapper' defined in file [F:\litemall-master\litemall-db\target\classes\org\linlinjava\litemall\db\dao\LitemallUserMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:324)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:843)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at org.linlinjava.litemall.Application.main(Application.java:16)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'litemallUserMapper' defined in file [F:\litemall-master\litemall-db\target\classes\org\linlinjava\litemall\db\dao\LitemallUserMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1248)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1168)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:636)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:180)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321)
+	... 22 common frames omitted
+Caused by: java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:83)
+	at org.springframework.dao.support.DaoSupport.afterPropertiesSet(DaoSupport.java:44)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774)
+	... 37 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.loadXmlResource(MapperAnnotationBuilder.java:173)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.parse(MapperAnnotationBuilder.java:124)
+	at org.apache.ibatis.binding.MapperRegistry.addMapper(MapperRegistry.java:72)
+	at org.apache.ibatis.session.Configuration.addMapper(Configuration.java:741)
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:80)
+	... 40 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.buildParameterMapping(SqlSourceBuilder.java:117)
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.handleToken(SqlSourceBuilder.java:67)
+	at org.apache.ibatis.parsing.GenericTokenParser.parse(GenericTokenParser.java:78)
+	at org.apache.ibatis.builder.SqlSourceBuilder.parse(SqlSourceBuilder.java:45)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:46)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:40)
+	at org.apache.ibatis.scripting.xmltags.XMLScriptBuilder.parseScriptNode(XMLScriptBuilder.java:72)
+	at org.apache.ibatis.scripting.xmltags.XMLLanguageDriver.createSqlSource(XMLLanguageDriver.java:44)
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:94)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:135)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:128)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)
+	... 46 common frames omitted
+2019-08-05 16:29:25,674 INFO [restartedMain] org.linlinjava.litemall.Application [StartupInfoLogger.java : 50] Starting Application on DESKTOP-SCRUMO0 with PID 24708 (F:\litemall-master\litemall-all\target\classes started by Thinkpad in F:\litemall-master\litemall-all)
+2019-08-05 16:29:25,677 DEBUG [restartedMain] org.linlinjava.litemall.Application [StartupInfoLogger.java : 53] Running with Spring Boot v2.1.5.RELEASE, Spring v5.1.7.RELEASE
+2019-08-05 16:29:25,678 INFO [restartedMain] org.linlinjava.litemall.Application [SpringApplication.java : 679] The following profiles are active: db,core,admin,wx
+2019-08-05 16:29:31,418 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, key_name, key_value, add_time, update_time, deleted from litemall_system WHERE ( deleted = ? ) 
+2019-08-05 16:29:31,585 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: false(Boolean)
+2019-08-05 16:29:31,622 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 16
+2019-08-05 16:29:31,626 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 42] ==========================================================================================================================================================================================================
+2019-08-05 16:29:31,626 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 43] 
+2019-08-05 16:29:31,627 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 44]               Litemall 初始化信息
+2019-08-05 16:29:31,627 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 45] 
+2019-08-05 16:29:31,627 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 16:29:31,627 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  系统信息  ]]
+2019-08-05 16:29:31,628 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 16:29:31,628 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     服务器端口        ->        8080
+2019-08-05 16:29:31,628 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     数据库USER        ->        litemall
+2019-08-05 16:29:31,628 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     数据库地址        ->        jdbc:mysql://localhost:3306/litemall?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+2019-08-05 16:29:31,629 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 16:29:31,629 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  模块状态  ]]
+2019-08-05 16:29:31,629 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 16:29:31,629 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     邮件        ->        false
+2019-08-05 16:29:31,629 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     短信        ->        false
+2019-08-05 16:29:31,630 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     模版消息        ->        false
+2019-08-05 16:29:31,630 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     快递信息        ->        false
+2019-08-05 16:29:31,630 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     快递鸟ID        ->        XXXXXXXXX
+2019-08-05 16:29:31,630 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     对象存储        ->        local
+2019-08-05 16:29:31,630 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     本地对象存储路径        ->        storage
+2019-08-05 16:29:31,631 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     本地对象访问地址        ->        http://192.168.2.6:8080/wx/storage/fetch/
+2019-08-05 16:29:31,631 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 16:29:31,631 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  微信相关  ]]
+2019-08-05 16:29:31,631 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 16:29:31,631 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信APP KEY        ->        wxa5b486c6b918ecfb
+2019-08-05 16:29:31,631 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信APP-SECRET        ->        e04004829d4c383b4db7769d88dfbca1
+2019-08-05 16:29:31,632 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付MCH-ID        ->        111111
+2019-08-05 16:29:31,632 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付MCH-KEY        ->        xxxxxx
+2019-08-05 16:29:31,632 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付通知地址        ->        http://www.example.com/wx/order/pay-notify
+2019-08-05 16:29:31,632 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 16:29:31,632 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  系统设置  ]]
+2019-08-05 16:29:31,632 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 16:29:31,633 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     自动创建朋友圈分享图        ->        true
+2019-08-05 16:29:31,633 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     商场名称        ->        litemall大商场
+2019-08-05 16:29:31,633 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     首页显示记录数：NEW,HOT,BRAND,TOPIC,CatlogList,CatlogMore        ->        10,6,4,4,4,4
+2019-08-05 16:29:31,633 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 49]   
+2019-08-05 16:29:31,633 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 50] ==========================================================================================================================================================================================================
+2019-08-05 16:29:32,369 ERROR [restartedMain] o.m.spring.mapper.MapperFactoryBean [MapperFactoryBean.java : 82] Error while adding the mapper 'interface org.linlinjava.litemall.db.dao.LitemallUserMapper' to configuration.
+org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.loadXmlResource(MapperAnnotationBuilder.java:173)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.parse(MapperAnnotationBuilder.java:124)
+	at org.apache.ibatis.binding.MapperRegistry.addMapper(MapperRegistry.java:72)
+	at org.apache.ibatis.session.Configuration.addMapper(Configuration.java:741)
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:80)
+	at org.springframework.dao.support.DaoSupport.afterPropertiesSet(DaoSupport.java:44)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1248)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1168)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:636)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:180)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:843)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at org.linlinjava.litemall.Application.main(Application.java:16)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.buildParameterMapping(SqlSourceBuilder.java:117)
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.handleToken(SqlSourceBuilder.java:67)
+	at org.apache.ibatis.parsing.GenericTokenParser.parse(GenericTokenParser.java:78)
+	at org.apache.ibatis.builder.SqlSourceBuilder.parse(SqlSourceBuilder.java:45)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:46)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:40)
+	at org.apache.ibatis.scripting.xmltags.XMLScriptBuilder.parseScriptNode(XMLScriptBuilder.java:72)
+	at org.apache.ibatis.scripting.xmltags.XMLLanguageDriver.createSqlSource(XMLLanguageDriver.java:44)
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:94)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:135)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:128)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)
+	... 46 common frames omitted
+2019-08-05 16:29:32,404 ERROR [restartedMain] o.s.boot.SpringApplication [SpringApplication.java : 858] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'litemallUserService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'litemallUserMapper' defined in file [F:\litemall-master\litemall-db\target\classes\org\linlinjava\litemall\db\dao\LitemallUserMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:324)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:843)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at org.linlinjava.litemall.Application.main(Application.java:16)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'litemallUserMapper' defined in file [F:\litemall-master\litemall-db\target\classes\org\linlinjava\litemall\db\dao\LitemallUserMapper.class]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1248)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1168)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:636)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:180)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321)
+	... 22 common frames omitted
+Caused by: java.lang.IllegalArgumentException: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:83)
+	at org.springframework.dao.support.DaoSupport.afterPropertiesSet(DaoSupport.java:44)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774)
+	... 37 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'org/linlinjava/litemall/db/dao/LitemallUserMapper.xml'. Cause: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.loadXmlResource(MapperAnnotationBuilder.java:173)
+	at org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.parse(MapperAnnotationBuilder.java:124)
+	at org.apache.ibatis.binding.MapperRegistry.addMapper(MapperRegistry.java:72)
+	at org.apache.ibatis.session.Configuration.addMapper(Configuration.java:741)
+	at org.mybatis.spring.mapper.MapperFactoryBean.checkDaoConfig(MapperFactoryBean.java:80)
+	... 40 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: An invalid property 'address' was found in mapping #{sessionKey,address=VARCHAR}.  Valid properties are javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.buildParameterMapping(SqlSourceBuilder.java:117)
+	at org.apache.ibatis.builder.SqlSourceBuilder$ParameterMappingTokenHandler.handleToken(SqlSourceBuilder.java:67)
+	at org.apache.ibatis.parsing.GenericTokenParser.parse(GenericTokenParser.java:78)
+	at org.apache.ibatis.builder.SqlSourceBuilder.parse(SqlSourceBuilder.java:45)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:46)
+	at org.apache.ibatis.scripting.defaults.RawSqlSource.<init>(RawSqlSource.java:40)
+	at org.apache.ibatis.scripting.xmltags.XMLScriptBuilder.parseScriptNode(XMLScriptBuilder.java:72)
+	at org.apache.ibatis.scripting.xmltags.XMLLanguageDriver.createSqlSource(XMLLanguageDriver.java:44)
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:94)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:135)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:128)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)
+	... 46 common frames omitted
+2019-08-05 16:33:37,567 INFO [restartedMain] org.linlinjava.litemall.Application [StartupInfoLogger.java : 50] Starting Application on DESKTOP-SCRUMO0 with PID 18272 (F:\litemall-master\litemall-all\target\classes started by Thinkpad in F:\litemall-master\litemall-all)
+2019-08-05 16:33:37,570 DEBUG [restartedMain] org.linlinjava.litemall.Application [StartupInfoLogger.java : 53] Running with Spring Boot v2.1.5.RELEASE, Spring v5.1.7.RELEASE
+2019-08-05 16:33:37,571 INFO [restartedMain] org.linlinjava.litemall.Application [SpringApplication.java : 679] The following profiles are active: db,core,admin,wx
+2019-08-05 16:33:43,314 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, key_name, key_value, add_time, update_time, deleted from litemall_system WHERE ( deleted = ? ) 
+2019-08-05 16:33:43,493 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: false(Boolean)
+2019-08-05 16:33:43,527 DEBUG [restartedMain] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 16
+2019-08-05 16:33:43,532 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 42] ==========================================================================================================================================================================================================
+2019-08-05 16:33:43,532 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 43] 
+2019-08-05 16:33:43,532 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 44]               Litemall 初始化信息
+2019-08-05 16:33:43,533 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 45] 
+2019-08-05 16:33:43,533 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 16:33:43,534 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  系统信息  ]]
+2019-08-05 16:33:43,534 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 16:33:43,534 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     服务器端口        ->        8080
+2019-08-05 16:33:43,534 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     数据库USER        ->        litemall
+2019-08-05 16:33:43,535 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     数据库地址        ->        jdbc:mysql://localhost:3306/litemall?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+2019-08-05 16:33:43,535 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 16:33:43,535 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  模块状态  ]]
+2019-08-05 16:33:43,536 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 16:33:43,536 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     邮件        ->        false
+2019-08-05 16:33:43,536 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     短信        ->        false
+2019-08-05 16:33:43,536 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     模版消息        ->        false
+2019-08-05 16:33:43,536 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     快递信息        ->        false
+2019-08-05 16:33:43,537 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     快递鸟ID        ->        XXXXXXXXX
+2019-08-05 16:33:43,537 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     对象存储        ->        local
+2019-08-05 16:33:43,537 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     本地对象存储路径        ->        storage
+2019-08-05 16:33:43,537 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     本地对象访问地址        ->        http://192.168.2.6:8080/wx/storage/fetch/
+2019-08-05 16:33:43,538 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 16:33:43,538 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  微信相关  ]]
+2019-08-05 16:33:43,538 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 16:33:43,538 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信APP KEY        ->        wxa5b486c6b918ecfb
+2019-08-05 16:33:43,538 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信APP-SECRET        ->        e04004829d4c383b4db7769d88dfbca1
+2019-08-05 16:33:43,539 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付MCH-ID        ->        111111
+2019-08-05 16:33:43,539 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付MCH-KEY        ->        xxxxxx
+2019-08-05 16:33:43,539 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     微信支付通知地址        ->        http://www.example.com/wx/order/pay-notify
+2019-08-05 16:33:43,539 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 67] 
+2019-08-05 16:33:43,539 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 68]     [[  系统设置  ]]
+2019-08-05 16:33:43,539 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 69] 
+2019-08-05 16:33:43,539 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     自动创建朋友圈分享图        ->        true
+2019-08-05 16:33:43,540 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     商场名称        ->        litemall大商场
+2019-08-05 16:33:43,540 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 71]     首页显示记录数：NEW,HOT,BRAND,TOPIC,CatlogList,CatlogMore        ->        10,6,4,4,4,4
+2019-08-05 16:33:43,540 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 49]   
+2019-08-05 16:33:43,540 INFO [restartedMain] o.l.l.core.util.SystemInfoPrinter [SystemInfoPrinter.java : 50] ==========================================================================================================================================================================================================
+2019-08-05 16:33:46,942 INFO [scheduling-1] o.l.litemall.admin.job.CouponJob [CouponJob.java : 36] 系统开启任务检查优惠券是否已经过期
+2019-08-05 16:33:46,967 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, `name`, `desc`, tag, total, discount, `min`, `limit`, `type`, `status`, goods_type, goods_value, code, time_type, `days`, start_time, end_time, add_time, update_time, deleted from litemall_coupon WHERE ( `status` = ? and time_type = ? and end_time < ? and deleted = ? ) 
+2019-08-05 16:33:46,971 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 1(Short), 2019-08-05 16:33:46.9549016(Timestamp), false(Boolean)
+2019-08-05 16:33:46,974 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 16:33:46,982 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, coupon_id, `status`, used_time, start_time, end_time, order_id, add_time, update_time, deleted from litemall_coupon_user WHERE ( `status` = ? and end_time < ? and deleted = ? ) 
+2019-08-05 16:33:46,984 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 2019-08-05 16:33:46.9798377(Timestamp), false(Boolean)
+2019-08-05 16:33:46,986 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 16:33:47,007 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 16:33:47,032 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 16:33:47,035 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 16:31:47.0087583(Timestamp), false(Boolean)
+2019-08-05 16:33:47,038 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 16:33:48,232 INFO [restartedMain] org.linlinjava.litemall.Application [StartupInfoLogger.java : 59] Started Application in 11.437 seconds (JVM running for 12.475)
+2019-08-05 17:03:47,047 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 17:03:47,049 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 17:03:47,049 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 17:01:47.0475599(Timestamp), false(Boolean)
+2019-08-05 17:03:47,050 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 17:33:46,989 INFO [scheduling-1] o.l.litemall.admin.job.CouponJob [CouponJob.java : 36] 系统开启任务检查优惠券是否已经过期
+2019-08-05 17:33:46,992 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, `name`, `desc`, tag, total, discount, `min`, `limit`, `type`, `status`, goods_type, goods_value, code, time_type, `days`, start_time, end_time, add_time, update_time, deleted from litemall_coupon WHERE ( `status` = ? and time_type = ? and end_time < ? and deleted = ? ) 
+2019-08-05 17:33:46,994 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 1(Short), 2019-08-05 17:33:46.9901323(Timestamp), false(Boolean)
+2019-08-05 17:33:46,996 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 17:33:46,998 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, coupon_id, `status`, used_time, start_time, end_time, order_id, add_time, update_time, deleted from litemall_coupon_user WHERE ( `status` = ? and end_time < ? and deleted = ? ) 
+2019-08-05 17:33:46,999 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 2019-08-05 17:33:46.9970716(Timestamp), false(Boolean)
+2019-08-05 17:33:47,000 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 17:33:47,053 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 17:33:47,055 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 17:33:47,056 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 17:31:47.0549179(Timestamp), false(Boolean)
+2019-08-05 17:33:47,057 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 18:03:47,062 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 18:03:47,068 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 18:03:47,070 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 18:01:47.0649053(Timestamp), false(Boolean)
+2019-08-05 18:03:47,073 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 18:33:47,002 INFO [scheduling-1] o.l.litemall.admin.job.CouponJob [CouponJob.java : 36] 系统开启任务检查优惠券是否已经过期
+2019-08-05 18:33:47,004 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, `name`, `desc`, tag, total, discount, `min`, `limit`, `type`, `status`, goods_type, goods_value, code, time_type, `days`, start_time, end_time, add_time, update_time, deleted from litemall_coupon WHERE ( `status` = ? and time_type = ? and end_time < ? and deleted = ? ) 
+2019-08-05 18:33:47,005 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 1(Short), 2019-08-05 18:33:47.003021(Timestamp), false(Boolean)
+2019-08-05 18:33:47,007 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 18:33:47,008 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, coupon_id, `status`, used_time, start_time, end_time, order_id, add_time, update_time, deleted from litemall_coupon_user WHERE ( `status` = ? and end_time < ? and deleted = ? ) 
+2019-08-05 18:33:47,009 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 2019-08-05 18:33:47.0070112(Timestamp), false(Boolean)
+2019-08-05 18:33:47,010 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 18:33:47,078 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 18:33:47,079 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 18:33:47,080 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 18:31:47.0788522(Timestamp), false(Boolean)
+2019-08-05 18:33:47,083 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 19:03:47,087 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 19:03:47,091 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 19:03:47,092 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 19:01:47.0885432(Timestamp), false(Boolean)
+2019-08-05 19:03:47,093 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 19:33:47,012 INFO [scheduling-1] o.l.litemall.admin.job.CouponJob [CouponJob.java : 36] 系统开启任务检查优惠券是否已经过期
+2019-08-05 19:33:47,016 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, `name`, `desc`, tag, total, discount, `min`, `limit`, `type`, `status`, goods_type, goods_value, code, time_type, `days`, start_time, end_time, add_time, update_time, deleted from litemall_coupon WHERE ( `status` = ? and time_type = ? and end_time < ? and deleted = ? ) 
+2019-08-05 19:33:47,017 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 1(Short), 2019-08-05 19:33:47.0131785(Timestamp), false(Boolean)
+2019-08-05 19:33:47,019 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 19:33:47,020 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, coupon_id, `status`, used_time, start_time, end_time, order_id, add_time, update_time, deleted from litemall_coupon_user WHERE ( `status` = ? and end_time < ? and deleted = ? ) 
+2019-08-05 19:33:47,020 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 2019-08-05 19:33:47.0191615(Timestamp), false(Boolean)
+2019-08-05 19:33:47,021 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 19:33:47,095 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 19:33:47,097 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 19:33:47,098 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 19:31:47.0959552(Timestamp), false(Boolean)
+2019-08-05 19:33:47,106 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 20:03:47,113 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 20:03:47,116 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 20:03:47,117 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 20:01:47.1138917(Timestamp), false(Boolean)
+2019-08-05 20:03:47,126 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 20:33:47,022 INFO [scheduling-1] o.l.litemall.admin.job.CouponJob [CouponJob.java : 36] 系统开启任务检查优惠券是否已经过期
+2019-08-05 20:33:47,024 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, `name`, `desc`, tag, total, discount, `min`, `limit`, `type`, `status`, goods_type, goods_value, code, time_type, `days`, start_time, end_time, add_time, update_time, deleted from litemall_coupon WHERE ( `status` = ? and time_type = ? and end_time < ? and deleted = ? ) 
+2019-08-05 20:33:47,025 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 1(Short), 2019-08-05 20:33:47.0227677(Timestamp), false(Boolean)
+2019-08-05 20:33:47,026 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 20:33:47,028 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, coupon_id, `status`, used_time, start_time, end_time, order_id, add_time, update_time, deleted from litemall_coupon_user WHERE ( `status` = ? and end_time < ? and deleted = ? ) 
+2019-08-05 20:33:47,028 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 2019-08-05 20:33:47.0275487(Timestamp), false(Boolean)
+2019-08-05 20:33:47,029 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 20:33:47,131 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 20:33:47,133 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 20:33:47,133 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 20:31:47.1322816(Timestamp), false(Boolean)
+2019-08-05 20:33:47,135 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 21:03:47,138 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 21:03:47,140 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 21:03:47,140 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 21:01:47.1384609(Timestamp), false(Boolean)
+2019-08-05 21:03:47,142 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 21:33:47,032 INFO [scheduling-1] o.l.litemall.admin.job.CouponJob [CouponJob.java : 36] 系统开启任务检查优惠券是否已经过期
+2019-08-05 21:33:47,036 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, `name`, `desc`, tag, total, discount, `min`, `limit`, `type`, `status`, goods_type, goods_value, code, time_type, `days`, start_time, end_time, add_time, update_time, deleted from litemall_coupon WHERE ( `status` = ? and time_type = ? and end_time < ? and deleted = ? ) 
+2019-08-05 21:33:47,037 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 1(Short), 2019-08-05 21:33:47.0334935(Timestamp), false(Boolean)
+2019-08-05 21:33:47,039 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 21:33:47,041 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, coupon_id, `status`, used_time, start_time, end_time, order_id, add_time, update_time, deleted from litemall_coupon_user WHERE ( `status` = ? and end_time < ? and deleted = ? ) 
+2019-08-05 21:33:47,042 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 2019-08-05 21:33:47.0394714(Timestamp), false(Boolean)
+2019-08-05 21:33:47,042 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 21:33:47,146 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 21:33:47,148 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 21:33:47,148 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 21:31:47.1472195(Timestamp), false(Boolean)
+2019-08-05 21:33:47,149 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 22:03:47,152 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 22:03:47,154 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 22:03:47,155 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 22:01:47.1531121(Timestamp), false(Boolean)
+2019-08-05 22:03:47,156 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 22:33:47,044 INFO [scheduling-1] o.l.litemall.admin.job.CouponJob [CouponJob.java : 36] 系统开启任务检查优惠券是否已经过期
+2019-08-05 22:33:47,046 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, `name`, `desc`, tag, total, discount, `min`, `limit`, `type`, `status`, goods_type, goods_value, code, time_type, `days`, start_time, end_time, add_time, update_time, deleted from litemall_coupon WHERE ( `status` = ? and time_type = ? and end_time < ? and deleted = ? ) 
+2019-08-05 22:33:47,047 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 1(Short), 2019-08-05 22:33:47.0445681(Timestamp), false(Boolean)
+2019-08-05 22:33:47,048 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 22:33:47,050 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, coupon_id, `status`, used_time, start_time, end_time, order_id, add_time, update_time, deleted from litemall_coupon_user WHERE ( `status` = ? and end_time < ? and deleted = ? ) 
+2019-08-05 22:33:47,050 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 2019-08-05 22:33:47.049299(Timestamp), false(Boolean)
+2019-08-05 22:33:47,051 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 22:33:47,159 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 22:33:47,161 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 22:33:47,161 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 22:31:47.160003(Timestamp), false(Boolean)
+2019-08-05 22:33:47,162 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 23:03:47,167 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 23:03:47,169 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 23:03:47,169 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 23:01:47.1676352(Timestamp), false(Boolean)
+2019-08-05 23:03:47,171 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 23:33:47,052 INFO [scheduling-1] o.l.litemall.admin.job.CouponJob [CouponJob.java : 36] 系统开启任务检查优惠券是否已经过期
+2019-08-05 23:33:47,063 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, `name`, `desc`, tag, total, discount, `min`, `limit`, `type`, `status`, goods_type, goods_value, code, time_type, `days`, start_time, end_time, add_time, update_time, deleted from litemall_coupon WHERE ( `status` = ? and time_type = ? and end_time < ? and deleted = ? ) 
+2019-08-05 23:33:47,065 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 1(Short), 2019-08-05 23:33:47.0555892(Timestamp), false(Boolean)
+2019-08-05 23:33:47,068 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 23:33:47,072 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, coupon_id, `status`, used_time, start_time, end_time, order_id, add_time, update_time, deleted from litemall_coupon_user WHERE ( `status` = ? and end_time < ? and deleted = ? ) 
+2019-08-05 23:33:47,073 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 0(Short), 2019-08-05 23:33:47.0695668(Timestamp), false(Boolean)
+2019-08-05 23:33:47,075 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
+2019-08-05 23:33:47,174 INFO [scheduling-1] o.l.litemall.admin.job.OrderJob [OrderJob.java : 46] 系统开启任务检查订单是否已经超期自动取消订单
+2019-08-05 23:33:47,175 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==>  Preparing: select id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, coupon_price, integral_price, groupon_price, order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, confirm_time, comments, end_time, add_time, update_time, deleted from litemall_order WHERE ( order_status = ? and add_time < ? and deleted = ? ) 
+2019-08-05 23:33:47,176 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] ==> Parameters: 101(Short), 2019-08-05 23:31:47.1752663(Timestamp), false(Boolean)
+2019-08-05 23:33:47,177 DEBUG [scheduling-1] o.l.l.d.d.L.selectByExample [BaseJdbcLogger.java : 159] <==      Total: 0
