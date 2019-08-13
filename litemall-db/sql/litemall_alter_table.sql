@@ -1,0 +1,2 @@
+ALTER TABLE `litemall`.`litemall_user` ADD COLUMN `secret` VARCHAR(100) NULL COMMENT 'etm secret' AFTER `session_key`, ADD COLUMN `address` VARCHAR(100) NULL COMMENT 'etm address' AFTER `secret`; 
+ALTER TABLE `litemall`.`litemall_user` ADD COLUMN `pay_password` VARCHAR(65) DEFAULT '' NULL COMMENT '支付密码' AFTER `password`, ADD COLUMN `email` VARCHAR(65) DEFAULT '' NULL COMMENT '电子邮件' AFTER `pay_password`; 
