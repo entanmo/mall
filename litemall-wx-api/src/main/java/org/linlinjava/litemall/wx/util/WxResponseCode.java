@@ -32,6 +32,10 @@ public class WxResponseCode {
     public static final int COUPON_EXCEED_LIMIT = 740;
     public static final int COUPON_RECEIVE_FAIL= 741;
     public static final int COUPON_CODE_INVALID= 742;
-
+    
+    public static final int PAY_CODE_FAIL= 750;
+    public static final int PAY_CODE_UPDATE_FAIL= 751;
+    public static final int PAY_CODE_ORDERSN_UNKNOWN= 752;
+    public static final int PAY_CODE_ERROR_PASSWORD= 753;
 
 }

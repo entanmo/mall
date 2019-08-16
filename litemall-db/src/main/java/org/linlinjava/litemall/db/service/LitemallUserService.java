@@ -1,7 +1,10 @@
 package org.linlinjava.litemall.db.service;
 
 import com.github.pagehelper.PageHelper;
+
+import org.linlinjava.litemall.db.dao.LitemallDrawMapper;
 import org.linlinjava.litemall.db.dao.LitemallUserMapper;
+import org.linlinjava.litemall.db.domain.LitemallDraw;
 import org.linlinjava.litemall.db.domain.LitemallUser;
 import org.linlinjava.litemall.db.domain.LitemallUserExample;
 import org.linlinjava.litemall.db.domain.UserVo;
@@ -16,6 +19,9 @@ import java.util.List;
 public class LitemallUserService {
     @Resource
     private LitemallUserMapper userMapper;
+    
+    @Resource
+    private LitemallDrawMapper drawMapper;
 
     public LitemallUser findById(Integer userId) {
         return userMapper.selectByPrimaryKey(userId);
@@ -100,4 +106,11 @@ public class LitemallUserService {
     public void deleteById(Integer id) {
         userMapper.logicalDeleteByPrimaryKey(id);
     }
+    
+    public void addDrawRecord(LitemallDraw draw) {
+    	draw.setAddTime(LocalDateTime.now());
+        drawMapper.insertSelective(draw);
+    }
+    
+    
 }
