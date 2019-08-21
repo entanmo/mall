@@ -1,14 +1,18 @@
 package org.linlinjava.litemall.wx.util;
 
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.core.util.HttpUtil;
 import org.linlinjava.litemall.core.util.JacksonUtil;
 import org.linlinjava.litemall.wx.dto.UserInfo;
 
 public class XianLiaoRequest {
+
+    private static final Log logger = LogFactory.getLog(XianLiaoRequest.class);
 
     private static final String APPID = "qBSdYLZEuaTMssbI";
 
@@ -31,51 +35,54 @@ public class XianLiaoRequest {
         params.put("code", code);
 
         String postResult = HttpUtil.sendPost(URL_ACCESSTOKEN, params);
-        Map<String, String> resultMap = JacksonUtil.toMap(postResult);
+        logger.info("accessToken postResult:" + postResult);
+        Map<String, Object> resultMap = JacksonUtil.toObjectMap(postResult);
 
         String accessToken = null;
         if (resultMap != null && resultMap.get("err_msg").equals("success")) {
-            String data = resultMap.get("data");
-            Map<String, String> dataMap = JacksonUtil.toMap(data);
+            Map<String, Object> dataMap = (LinkedHashMap) resultMap.get("data");
             if (dataMap != null) {
-                accessToken = dataMap.get("access_token");
+                accessToken = (String) dataMap.get("access_token");
             }
         }
 
         return accessToken;
     }
 
-    private static String getUserInfo(String code) {
+    private static Map<String, Object> getUserInfo(String code) {
 
         String accessToken = getAccessToken(code);
 
         Map<String, String> params = new HashMap<String, String>();
         params.put("access_token", accessToken);
 
-        String result = HttpUtil.sendPost(URL_USERINFO, params);
-        Map<String, String> resultMap = JacksonUtil.toMap(result);
+        String postResult = HttpUtil.sendPost(URL_USERINFO, params);
+        logger.info("userInfo postResult:" + postResult);
+        Map<String, Object> resultMap = JacksonUtil.toObjectMap(postResult);
 
-        String userInfo = null;
+        Map<String, Object> userInfo = null;
         if (resultMap != null && resultMap.get("err_msg").equals("success")) {
-            userInfo = resultMap.get("data");
+            userInfo = (LinkedHashMap) resultMap.get("data");
         }
 
         return userInfo;
     }
 
     public static UserInfo getAuthUserInfo(String code) {
-        String auth = getUserInfo(code);
+        Map<String, Object> auth = getUserInfo(code);
         UserInfo userInfo = new UserInfo();
 
-        userInfo.setNickName(JacksonUtil.parseString(auth, "nickName"));
-        userInfo.setAvatarUrl(JacksonUtil.parseString(auth, "originalAvatar"));
-        userInfo.setGender(JacksonUtil.parseByte(auth, "gender"));
-        userInfo.setOpenId(JacksonUtil.parseString(auth, "openId"));
+        userInfo.setNickName((String) auth.get("nickName"));
+        userInfo.setAvatarUrl((String) auth.get("originalAvatar"));
+        Byte g = auth.get("gender").equals(1) ? (byte) 1 : (byte) 0;
+        userInfo.setGender(g);
+        userInfo.setOpenId((String) auth.get("openId"));
 
+        logger.info("userInfo:" + userInfo);
         return userInfo;
     }
 
-    public static String getAuthPage(){
+    public static String getAuthPage() {
         Map<String, String> params = new HashMap<String, String>();
         params.put("appid", APPID);
         params.put("redirect_uri", URL_REDIRECT);

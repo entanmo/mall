@@ -21,7 +21,6 @@ public class ETMHelp {
 	private static final String URL_ETM_TRANSACTIONS = "http://47.111.160.173:4096/api/transactions";
 	/**
 	 * 生成etm帐户
-	 * @return
 	 */
 	public static Map<String,String> newAccount(){
 		
@@ -34,8 +33,6 @@ public class ETMHelp {
 	
 	/**
 	 * etm 支付
-	 * @param params
-	 * @return
 	 */
 	public static Map<String,String> pay(String secret, String address, String amount ){
 		
@@ -55,8 +52,6 @@ public class ETMHelp {
 	
 	/**
 	 * 提取 setp 1
-	 * @param params
-	 * @return
 	 */
 	public static Map<String,String> draw1(String secret,  String amount ,String address ){
 		
@@ -76,8 +71,6 @@ public class ETMHelp {
 	
 	/**
 	 * 提取 setp 2
-	 * @param params
-	 * @return
 	 */
 	public static Map<String,String> draw2(String secret,  String amount ){
 		
@@ -96,8 +89,6 @@ public class ETMHelp {
 	
 	/**
 	 * 提取 setp 3
-	 * @param params
-	 * @return
 	 */
 	public static Map<String,String> draw3(String secret, String recipientAddress, long amount ){
 		
@@ -221,9 +212,9 @@ public class ETMHelp {
 			}
 		} 
 		*/
-		String result = HttpUtil.sendGet("http://47.111.160.173:4096/api/accounts/getBalance?address=A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q", "");
-		
-		System.out.println(result);
+		//String result = HttpUtil.sendGet("http://47.111.160.173:4096/api/accounts/getBalance?address=A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q", "");
+
+//		System.out.println(newAccount().get("secret"));
 		
 	}
 

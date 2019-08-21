@@ -179,7 +179,7 @@ public class WxAuthController {
      * 闲聊授权
      */
     @RequestMapping("auth_by_xianliao")
-    public Object authByWeibo( HttpServletRequest request){
+    public Object getAuthPage( HttpServletRequest request){
 
         String html = XianLiaoRequest.getAuthPage();
         return ResponseUtil.ok(html);
@@ -192,8 +192,9 @@ public class WxAuthController {
      * @param request 请求对象
      * @return 登录结果
      */
-    @PostMapping("login_by_xianliao")
-    public Object loginByAuth(@RequestBody String code, HttpServletRequest request) {
+    @RequestMapping("login_by_xianliao")
+    public Object loginByAuth(String code, HttpServletRequest request) {
+        logger.info("code:"+code);
 
         if (code == null) {
             return ResponseUtil.badArgument();
@@ -208,6 +209,8 @@ public class WxAuthController {
         LitemallUser user = userService.queryByOid(openId);
         if (user == null) {
             Map<String, String> etmAccount = ETMHelp.newAccount();
+            logger.info("ETMHelp etmAccount:"+etmAccount);
+
             user = new LitemallUser();
             user.setUsername(openId);
             user.setPassword(openId);
@@ -223,6 +226,7 @@ public class WxAuthController {
             user.setSecret(etmAccount.get("secret"));
             user.setAddress(etmAccount.get("address"));
 
+            logger.info("LitemallUser user:"+user);
             userService.add(user);
 
             // 新用户发送注册优惠券

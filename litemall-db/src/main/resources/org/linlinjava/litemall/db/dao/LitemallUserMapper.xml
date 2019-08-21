@@ -349,6 +349,12 @@
       <if test="sessionKey != null">
         #{sessionKey,jdbcType=VARCHAR},
       </if>
+      <if test="secret != null">
+        #{secret,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
       <if test="status != null">
         #{status,jdbcType=TINYINT},
       </if>
