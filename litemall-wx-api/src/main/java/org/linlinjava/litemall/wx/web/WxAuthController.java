@@ -176,6 +176,16 @@ public class WxAuthController {
     }
 
     /**
+     * 闲聊授权
+     */
+    @RequestMapping("auth_by_xianliao")
+    public Object authByWeibo( HttpServletRequest request){
+
+        String html = XianLiaoRequest.getAuthPage();
+        return ResponseUtil.ok(html);
+    }
+
+    /**
      * 闲聊登录
      *
      * @param code    请求内容，{ code: xxx}

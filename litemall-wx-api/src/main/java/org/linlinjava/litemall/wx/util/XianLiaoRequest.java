@@ -14,6 +14,10 @@ public class XianLiaoRequest {
 
     private static final String APPSECRET = "ltKX4HGMUdPIHVQI";
 
+    private static final String URL_REDIRECT = "http://47.111.165.42:8080/wx/auth/auth_by_xianliao";
+
+    private static final String URL_AUTHORIZE = "https://api.weibo.com/oauth2/authorize";
+
     private static final String URL_ACCESSTOKEN = "https://ssgw.updrips.com/oauth2/accessToken";
 
     private static final String URL_USERINFO = "https://ssgw.updrips.com/resource/user/getUserInfo";
@@ -69,6 +73,17 @@ public class XianLiaoRequest {
         userInfo.setOpenId(JacksonUtil.parseString(auth, "openId"));
 
         return userInfo;
+    }
+
+    public static String getAuthPage(){
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("appid", APPID);
+        params.put("redirect_uri", URL_REDIRECT);
+        params.put("client_secret", "code");
+        String authPage = HttpUtil.sendPost(URL_AUTHORIZE, params);
+
+        return authPage;
+
     }
 
 }
