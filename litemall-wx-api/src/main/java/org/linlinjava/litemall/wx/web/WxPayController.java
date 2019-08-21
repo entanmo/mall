@@ -5,6 +5,7 @@ import static org.linlinjava.litemall.wx.util.WxResponseCode.PAY_CODE_FAIL;
 import static org.linlinjava.litemall.wx.util.WxResponseCode.PAY_CODE_ORDERSN_UNKNOWN;
 import static org.linlinjava.litemall.wx.util.WxResponseCode.PAY_CODE_UPDATE_FAIL;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -135,8 +136,8 @@ public class WxPayController {
 
 		LitemallUser user = userService.findById(userId);
 		String secret = user.getSecret();
-		int amount = JacksonUtil.parseInteger(body, "amount");
-		Map<String, String> result = ETMHelp.recharge(secret, "dappid", amount, "");
+		String amount = JacksonUtil.parseString(body, "amount");
+		Map<String, String> result = ETMHelp.recharge(secret, "f304169790def442a0f0451347f13b6aadbe12305da59fc2a7c2d81cb94cb27a", Long.valueOf(amount), null);
 		
 		if("true".equals(result.get("success"))) {
 			
@@ -155,7 +156,7 @@ public class WxPayController {
 	 *
 	 * @param userId
 	 *            用户ID
-	 * @return 收货地址列表
+	 * @return 
 	 */
 	@PostMapping("draw")
 	public Object draw(@LoginUser Integer userId, @RequestBody String body) {
@@ -177,26 +178,31 @@ public class WxPayController {
 		draw.setSecret(secret);
 		draw.setAmount(amount);
 		
-		Map<String, String> result1 = ETMHelp.draw1(secret, amount, address);
+		Map<String, String> result1 = ETMHelp.draw1(secret, amount, ETMHelp.ADMIN_ADDRESS);
 		if("true".equals(result1.get("success"))) {
 			
 			transactionId1 = result1.get("transactionId");
-			Map<String, String> result2 = ETMHelp.draw2(secret, amount);
+			Map<String, String> result2 = ETMHelp.draw2(ETMHelp.ADMIN_SECRET, amount);
 			
 			if("true".equals(result2.get("success"))) {
 				
 				transactionId2 = result2.get("transactionId");
-				Map<String, String> result3 = ETMHelp.draw3(secret, address, Long.parseLong(amount));
-				
-				if("true".equals(result3.get("success"))) {
+				if(Long.parseLong(amount) > ETMHelp.TRANSACTION_COST) {
+					Map<String, String> result3 = ETMHelp.draw3(ETMHelp.ADMIN_SECRET, address, Long.parseLong(amount) - ETMHelp.TRANSACTION_COST);
 					
-					transactionId3 = result3.get("transactionId");
-					
+					if("true".equals(result3.get("success"))) {
+						
+						transactionId3 = result3.get("transactionId");
+						
+					}else {
+						logger.error(result3);
+					}
 				}else {
-					
+					return ResponseUtil.fail(PAY_CODE_FAIL,"etm 手续费不足! ");
 				}
-			}else {
 				
+			}else {
+				logger.error(result2);
 			}
 		}else {
 			logger.error(result1);
@@ -220,15 +226,19 @@ public class WxPayController {
 	 * @return 收货地址列表
 	 */
 	@GetMapping("balance")
-	public Object balance(@LoginUser Integer userId, @RequestBody String body) {
+	public Object balance(@LoginUser Integer userId) {
+		
 		if (userId == null) {
 			return ResponseUtil.unlogin();
 		}
 
-		String address = JacksonUtil.parseString(body, "address");
-		String result = ETMHelp.getBalance(address);
-		
-		return ResponseUtil.ok(result);
+		LitemallUser user = userService.findById(userId);
+		Map<String,String> result = ETMHelp.getBalance(user.getAddress());
+		if("true".equals(result.get("success"))) {
+			
+			return ResponseUtil.ok(result.get("balance"));
+		}
+		return ResponseUtil.fail(PAY_CODE_FAIL,result.get("error"));
 		
 	}
 	
@@ -239,16 +249,18 @@ public class WxPayController {
 	 * @return
 	 */
 	@GetMapping("dapp/balance")
-	public Object dappBalance(@LoginUser Integer userId, @RequestBody String body) {
+	public Object dappBalance(@LoginUser Integer userId) {
 		if (userId == null) {
 			return ResponseUtil.unlogin();
 		}
-
-		String address = JacksonUtil.parseString(body, "address");
-		String result = ETMHelp.getDappBalance(address);
-		
-		return ResponseUtil.ok(result);
-		
+		LitemallUser user = userService.findById(userId);
+		//String address = JacksonUtil.parseString(body, "address");
+		Map<String,String> result = ETMHelp.getDappBalance(user.getAddress());
+		if("true".equals(result.get("success"))) {
+			
+			return ResponseUtil.ok(result.get("balance"));
+		}
+		return ResponseUtil.fail(PAY_CODE_FAIL,result.get("error"));
 	}
 
 }

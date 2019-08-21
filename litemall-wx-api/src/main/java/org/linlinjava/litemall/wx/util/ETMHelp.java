@@ -1,5 +1,6 @@
 package org.linlinjava.litemall.wx.util;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -19,6 +20,14 @@ public class ETMHelp {
 	private static final String URL_COIN_RECHARGE = "http://47.111.160.173:4096/api/dapps/transaction";
 	
 	private static final String URL_ETM_TRANSACTIONS = "http://47.111.160.173:4096/api/transactions";
+	
+	
+	public static final String ADMIN_SECRET = "idle despair fence doctor claw market scare squeeze group custom divorce similar";
+	
+	public static final String ADMIN_ADDRESS = "A7BCSUYQe8wShBUaAyw9YqQ5kiZ7qi5SAJ";
+	
+	public static final long  TRANSACTION_COST = 10000000L;
+	
 	/**
 	 * 生成etm帐户
 	 * @return
@@ -139,7 +148,7 @@ public class ETMHelp {
 	 * @param secondSecret
 	 * @return
 	 */
-	public static Map<String,String> recharge(String secret, String dappId, int amount ,String secondSecret){
+	public static Map<String,String> recharge(String secret, String dappId, long amount ,String secondSecret){
 		
 		
 		Map<String,Object> params = new LinkedHashMap<String, Object>();
@@ -164,12 +173,12 @@ public class ETMHelp {
 	 * @param address
 	 * @return
 	 */
-	public static String getBalance(String address) {
+	public static Map<String,String> getBalance(String address) {
 		
 		
 		String result = HttpUtil.sendGet("http://47.111.160.173:4096/api/accounts/getBalance?address="+ address, "");
 		
-		return result;
+		return JacksonUtil.toMap(result);
 	}
 	
 	/**
@@ -177,12 +186,12 @@ public class ETMHelp {
 	 * @param address
 	 * @return
 	 */
-	public static String getDappBalance(String address) {
+	public static Map<String,String> getDappBalance(String address) {
 		
 		
 		String result = HttpUtil.sendGet("http://47.111.160.173:4096/api/dapps/f304169790def442a0f0451347f13b6aadbe12305da59fc2a7c2d81cb94cb27a/sugram/balance?address="+ address, "");
 		
-		return result;
+		return JacksonUtil.toMap(result);
 	}
 	
 	
@@ -195,19 +204,19 @@ public class ETMHelp {
 		//Map<String,String> result = recharge("cycle gesture wink street sight arena quiz goose fossil girl doctor mirror", "f304169790def442a0f0451347f13b6aadbe12305da59fc2a7c2d81cb94cb27a", 2000000000, null);
 	
 		//提取
-	/*	Map<String, String> result1 = ETMHelp.draw1("cycle gesture wink street sight arena quiz goose fossil girl doctor mirror", "2500000000", "A7BCSUYQe8wShBUaAyw9YqQ5kiZ7qi5SAJ");
+	/*	Map<String, String> result1 = ETMHelp.draw1("cycle gesture wink street sight arena quiz goose fossil girl doctor mirror", "2500000000", ADMIN_ADDRESS);
 		if("true".equals(result1.get("success"))) {
 			
 			String transactionId1 = result1.get("transactionId");
 			
 			System.out.println(transactionId1);
-			Map<String, String> result2 = ETMHelp.draw2("idle despair fence doctor claw market scare squeeze group custom divorce similar", "2500000000");
+			Map<String, String> result2 = ETMHelp.draw2(ADMIN_SECRET, "2500000000");
 			
 			if("true".equals(result2.get("success"))) {
 				
 				String transactionId2 = result2.get("transactionId");
 				System.out.println(transactionId2);
-				Map<String, String> result3 = ETMHelp.draw3("idle despair fence doctor claw market scare squeeze group custom divorce similar", "A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q", 2500000000L);
+				Map<String, String> result3 = ETMHelp.draw3(ADMIN_SECRET, "A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q", 2500000000L);
 				
 				if("true".equals(result3.get("success"))) {
 					
