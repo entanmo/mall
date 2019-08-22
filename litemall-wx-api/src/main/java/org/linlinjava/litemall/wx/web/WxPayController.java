@@ -7,6 +7,7 @@ import static org.linlinjava.litemall.wx.util.WxResponseCode.PAY_CODE_UPDATE_FAI
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
@@ -28,6 +29,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -262,5 +264,48 @@ public class WxPayController {
 		}
 		return ResponseUtil.fail(PAY_CODE_FAIL,result.get("error"));
 	}
+	
+	/**
+	 * 充历史记录
+	 * @param userId
+	 * @param body
+	 * @return
+	 */
+	@GetMapping("balance/list")
+	public Object BalanceList(@LoginUser Integer userId,
+			@RequestParam(defaultValue = "1") Integer page,
+            @RequestParam(defaultValue = "10") Integer limit) {
+		if (userId == null) {
+			return ResponseUtil.unlogin();
+		}
+		List<LitemallDraw> list = userService.queryDrawRecord(userId, page, limit);
+		
+		
+			
+		return ResponseUtil.okList(list);
+		
+	}
+	
+	
+
+	/**
+	 * 充历史记录
+	 * @param userId
+	 * @param body
+	 * @return
+	 */
+	@GetMapping("recharge/list")
+	public Object rechargeList(@LoginUser Integer userId) {
+		if (userId == null) {
+			return ResponseUtil.unlogin();
+		}
+		LitemallUser user = userService.findById(userId);
+		Map<String,String> reslut = ETMHelp.getBalanceList(user.getAddress());
+		
+			
+		return ResponseUtil.ok(reslut);
+		
+	}
+	
 
 }
