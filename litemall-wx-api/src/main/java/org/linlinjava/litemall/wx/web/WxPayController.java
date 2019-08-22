@@ -300,7 +300,7 @@ public class WxPayController {
 			return ResponseUtil.unlogin();
 		}
 		LitemallUser user = userService.findById(userId);
-		Map<String,String> reslut = ETMHelp.getBalanceList(user.getAddress());
+		Map<String,Object> reslut = ETMHelp.getBalanceList(user.getAddress());
 		
 			
 		return ResponseUtil.ok(reslut);
