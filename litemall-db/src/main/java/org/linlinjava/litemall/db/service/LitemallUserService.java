@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import org.linlinjava.litemall.db.dao.LitemallDrawMapper;
 import org.linlinjava.litemall.db.dao.LitemallUserMapper;
 import org.linlinjava.litemall.db.domain.LitemallDraw;
+import org.linlinjava.litemall.db.domain.LitemallDrawExample;
 import org.linlinjava.litemall.db.domain.LitemallUser;
 import org.linlinjava.litemall.db.domain.LitemallUserExample;
 import org.linlinjava.litemall.db.domain.UserVo;
@@ -110,6 +111,17 @@ public class LitemallUserService {
     public void addDrawRecord(LitemallDraw draw) {
     	draw.setAddTime(LocalDateTime.now());
         drawMapper.insertSelective(draw);
+    }
+    
+    
+    public List<LitemallDraw>  queryDrawRecord(Integer userId,Integer page,Integer limit) {
+    	LitemallDrawExample example = new LitemallDrawExample();
+    	LitemallDrawExample.Criteria criteria = example.createCriteria();
+    	criteria.andUseridEqualTo(userId);
+    	PageHelper.startPage(page, limit);
+    	
+    	example.setOrderByClause(LitemallDraw.Column.addTime.desc());
+    	return drawMapper.selectByExampleSelective(example, LitemallDraw.Column.id,LitemallDraw.Column.address,LitemallDraw.Column.addTime,LitemallDraw.Column.amount);
     }
     
     
