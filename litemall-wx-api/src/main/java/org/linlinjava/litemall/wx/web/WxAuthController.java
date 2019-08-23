@@ -30,6 +30,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -176,13 +178,26 @@ public class WxAuthController {
     }
 
     /**
-     * 闲聊授权
+     * 闲聊授权页面
      */
-    @RequestMapping("auth_by_xianliao")
-    public Object getAuthPage( HttpServletRequest request){
+    @RequestMapping("get_auth_page")
+    public Object getAuthPage(HttpServletRequest request) {
 
         String html = XianLiaoRequest.getAuthPage();
         return ResponseUtil.ok(html);
+    }
+
+    /**
+     * 闲聊授权页面
+     */
+    @RequestMapping("auth_by_xianliao")
+    public void authByXianliao(@RequestParam String code, HttpServletResponse response) throws IOException {
+
+        if (code == null) {
+            response.sendRedirect("info");
+        }
+
+        response.sendRedirect("http://192.168.2.72:6255/#/login/auth？code=" + code);
     }
 
     /**
@@ -194,7 +209,7 @@ public class WxAuthController {
      */
     @RequestMapping("login_by_xianliao")
     public Object loginByAuth(String code, HttpServletRequest request) {
-        logger.info("code:"+code);
+        logger.info("code:" + code);
 
         if (code == null) {
             return ResponseUtil.badArgument();
@@ -209,7 +224,7 @@ public class WxAuthController {
         LitemallUser user = userService.queryByOid(openId);
         if (user == null) {
             Map<String, String> etmAccount = ETMHelp.newAccount();
-            logger.info("ETMHelp etmAccount:"+etmAccount);
+            logger.info("ETMHelp etmAccount:" + etmAccount);
 
             user = new LitemallUser();
             user.setUsername(openId);
@@ -226,7 +241,7 @@ public class WxAuthController {
             user.setSecret(etmAccount.get("secret"));
             user.setAddress(etmAccount.get("address"));
 
-            logger.info("LitemallUser user:"+user);
+            logger.info("LitemallUser user:" + user);
             userService.add(user);
 
             // 新用户发送注册优惠券
