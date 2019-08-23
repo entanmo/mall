@@ -193,7 +193,7 @@ public class WxAuthController {
             response.sendRedirect("info");
         }
 
-        response.sendRedirect("http://47.111.165.42/#/login/auth？code=" + code + "&type=3");
+        response.sendRedirect("http://47.111.165.42/#/login/auth?code=" + code + "&type=3");
 //        response.sendRedirect("http://192.168.2.72:6255/#/login/auth？code=" + code);
     }
 
@@ -269,7 +269,7 @@ public class WxAuthController {
         if (code == null) {
             return;
         }
-        response.sendRedirect("http://47.111.165.42/#/login/auth？code=" + code + "&type=1");
+        response.sendRedirect("http://47.111.165.42/#/login/auth?code=" + code + "&type=1");
 //        response.sendRedirect("http://192.168.2.72:9200/#/login/auth？code=" + code);
     }
 
@@ -284,8 +284,8 @@ public class WxAuthController {
         }
         String CODE = JacksonUtil.parseString(code, "code");
         String URL1 = "https://api.weibo.com/oauth2/access_token";
-        String APPID = "3350462784";
-        String APPSECRET = "8db0122cb12ea80c23f79e7e3c4bf5d0";
+        String APPID = "693823309";
+        String APPSECRET = "bef4d61b346b5597570f94c623bbf66e";
         String GRANT_TYPE = "authorization_code";
         Map<String, String> params1 = new HashMap<String, String>();
         params1.put("client_id", APPID);
