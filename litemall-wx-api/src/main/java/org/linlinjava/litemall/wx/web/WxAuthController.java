@@ -7,10 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.core.notify.NotifyService;
 import org.linlinjava.litemall.core.notify.NotifyType;
-import org.linlinjava.litemall.core.util.CharUtil;
-import org.linlinjava.litemall.core.util.JacksonUtil;
-import org.linlinjava.litemall.core.util.RegexUtil;
-import org.linlinjava.litemall.core.util.ResponseUtil;
+import org.linlinjava.litemall.core.util.*;
 import org.linlinjava.litemall.core.util.bcrypt.BCryptPasswordEncoder;
 import org.linlinjava.litemall.db.domain.LitemallUser;
 import org.linlinjava.litemall.db.service.CouponAssignService;
@@ -22,7 +19,6 @@ import org.linlinjava.litemall.wx.dto.WxLoginInfo;
 import org.linlinjava.litemall.wx.service.CaptchaCodeManager;
 import org.linlinjava.litemall.wx.service.UserTokenManager;
 import org.linlinjava.litemall.wx.util.ETMHelp;
-import org.linlinjava.litemall.core.util.IpUtil;
 import org.linlinjava.litemall.wx.util.XianLiaoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -188,7 +184,7 @@ public class WxAuthController {
     }
 
     /**
-     * 闲聊授权页面
+     * 闲聊授权回调
      */
     @RequestMapping("auth_by_xianliao")
     public void authByXianliao(@RequestParam String code, HttpServletResponse response) throws IOException {
@@ -197,7 +193,8 @@ public class WxAuthController {
             response.sendRedirect("info");
         }
 
-        response.sendRedirect("http://192.168.2.72:6255/#/login/auth？code=" + code);
+        response.sendRedirect("http://47.111.165.42/#/login/auth？code=" + code + "&type=3");
+//        response.sendRedirect("http://192.168.2.72:6255/#/login/auth？code=" + code);
     }
 
     /**
@@ -208,14 +205,15 @@ public class WxAuthController {
      * @return 登录结果
      */
     @RequestMapping("login_by_xianliao")
-    public Object loginByAuth(String code, HttpServletRequest request) {
-        logger.info("code:" + code);
+    public Object loginByAuth(@RequestBody String code, HttpServletRequest request) {
+        logger.info("xianliao code:" + code);
 
         if (code == null) {
             return ResponseUtil.badArgument();
         }
 
-        UserInfo userInfo = XianLiaoRequest.getAuthUserInfo(code);
+        String CODE = JacksonUtil.parseString(code, "code");
+        UserInfo userInfo = XianLiaoRequest.getAuthUserInfo(CODE);
         if (userInfo == null) {
             return ResponseUtil.badArgument();
         }
@@ -253,6 +251,106 @@ public class WxAuthController {
                 return ResponseUtil.updatedDataFailed();
             }
         }
+
+        // token
+        String token = UserTokenManager.generateToken(user.getId());
+
+        Map<Object, Object> result = new HashMap<Object, Object>();
+        result.put("token", token);
+        result.put("userInfo", userInfo);
+        return ResponseUtil.ok(result);
+    }
+
+    /**
+     * 微博授权回调
+     */
+    @RequestMapping("auth_by_weibo")
+    public void authByWeibo(@RequestParam String code, HttpServletResponse response) throws IOException {
+        if (code == null) {
+            return;
+        }
+        response.sendRedirect("http://47.111.165.42/#/login/auth？code=" + code + "&type=1");
+//        response.sendRedirect("http://192.168.2.72:9200/#/login/auth？code=" + code);
+    }
+
+    /**
+     * 微博登录
+     */
+    @PostMapping("login_by_weibo")
+    public Object loginByWeibo(@RequestBody String code, HttpServletRequest request) {
+        logger.info("weibo code:" + code);
+        if (code == null) {
+            return ResponseUtil.badArgument();
+        }
+        String CODE = JacksonUtil.parseString(code, "code");
+        String URL1 = "https://api.weibo.com/oauth2/access_token";
+        String APPID = "3350462784";
+        String APPSECRET = "8db0122cb12ea80c23f79e7e3c4bf5d0";
+        String GRANT_TYPE = "authorization_code";
+        Map<String, String> params1 = new HashMap<String, String>();
+        params1.put("client_id", APPID);
+        params1.put("client_secret", APPSECRET);
+        params1.put("grant_type", GRANT_TYPE);
+        params1.put("redirect_uri", "http://47.111.165.42:8080/user/auth/auth_by_weibo");
+        params1.put("code", CODE);
+        String access_token_json = HttpUtil.sendPost(URL1, params1);
+
+        if (access_token_json.isEmpty()) {
+            return ResponseUtil.fail(AUTH_INVALID_ACCOUNT, "授权失败");
+        }
+        Map<String, Object> access_map = JacksonUtil.toObjectMap(access_token_json);
+        String ACCESS_TOKEN = (String) access_map.get("access_token");
+        String UID = (String) access_map.get("uid");
+
+        /*access_token换取用户信息*/
+        String URL2 = "https://api.weibo.com/2/users/show.json";
+        String params2 = "access_token=" + ACCESS_TOKEN + "&uid=" + UID;
+        String user_json = HttpUtil.sendGet(URL2, params2);
+
+        if (user_json.isEmpty()) {
+            return ResponseUtil.fail(AUTH_INVALID_ACCOUNT, "授权失败");
+        }
+        Map<String, Object> user_map = JacksonUtil.toObjectMap(user_json);
+
+        LitemallUser user = null;
+        if (user_map != null) {
+            String openId = (String) user_map.get("idstr");
+            String nickName = (String) user_map.get("name");
+            String originalAvatar = (String) user_map.get("profile_image_url");
+            String user_gender = (String) user_map.get("gender");
+            Byte gender = user_gender.equals("m") ? (byte) 1 : (byte) 0;
+
+            user = userService.queryByOid(openId);
+            if (user == null) {
+                user = new LitemallUser();
+                user.setUsername(openId);
+                user.setPassword(openId);
+                user.setWeixinOpenid(openId);
+                user.setAvatar(originalAvatar);
+                user.setNickname(nickName);
+                user.setGender(gender);
+
+                user.setUserLevel((byte) 0);
+                user.setStatus((byte) 0);
+                user.setLastLoginTime(LocalDateTime.now());
+                user.setLastLoginIp(IpUtil.getIpAddr(request));
+
+                userService.add(user);
+                // 新用户发送注册优惠券
+                couponAssignService.assignForRegister(user.getId());
+            } else {
+                user.setLastLoginTime(LocalDateTime.now());
+                user.setLastLoginIp(IpUtil.getIpAddr(request));
+                if (userService.updateById(user) == 0) {
+                    return ResponseUtil.updatedDataFailed();
+                }
+            }
+        }
+
+        UserInfo userInfo = new UserInfo();
+        userInfo.setAvatarUrl(user.getAvatar());
+        userInfo.setNickName(user.getNickname());
+        userInfo.setGender(user.getGender());
 
         // token
         String token = UserTokenManager.generateToken(user.getId());
