@@ -202,8 +202,10 @@ public class ETMHelp {
 	 */
 	public static Map<String,Object> getBalanceList(String address) {
 		
+		String url = URL_ETM_TRANSACTIONS + "?type=6&senderId=" + address+"&orderBy=t_timestamp&and=1";
+		//System.out.println(url);
+		String result = HttpUtil.sendGet(url , "");
 		
-		String result = HttpUtil.sendGet(URL_ETM_TRANSACTIONS + "?type=6&senderId=\"" + address+"\"&orderBy=\"t_timestamp\"&and=1" , "");
 		return JacksonUtil.toObjectMap(result);
 	}
 	
@@ -244,7 +246,7 @@ public class ETMHelp {
 		} 
 		*/
 		//String result = HttpUtil.sendGet("http://47.111.160.173:4096/api/accounts/getBalance?address=A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q", "");
-		 Map<String,Object> result = getBalanceList("A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q");
+		 Map<String,Object> result = getBalanceList("A5GfRnWWBZL5EAQMQvpfmhJP65J3rTaW2Z");
 		
 		System.out.println(result);
 		//String result = HttpUtil.sendGet("http://47.111.160.173:4096/api/accounts/getBalance?address=A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q", "");
