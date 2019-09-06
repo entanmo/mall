@@ -139,7 +139,7 @@ public class WxPayController {
 		LitemallUser user = userService.findById(userId);
 		String secret = user.getSecret();
 		String amount = JacksonUtil.parseString(body, "amount");
-		Map<String, String> result = ETMHelp.recharge(secret, "f304169790def442a0f0451347f13b6aadbe12305da59fc2a7c2d81cb94cb27a", Long.valueOf(amount), null);
+		Map<String, String> result = ETMHelp.recharge(secret, ETMHelp.DAPP_ID, Long.valueOf(amount), null);
 		
 		if("true".equals(result.get("success"))) {
 			
@@ -152,6 +152,87 @@ public class WxPayController {
 		}
 		
 	}
+	
+/*	*//**
+	 * Etm 提取
+	 *
+	 * @param userId
+	 *            用户ID
+	 * @return 
+	 *//*
+	@PostMapping("draw")
+	public Object draw(@LoginUser Integer userId, @RequestBody String body) {
+		if (userId == null) {
+			return ResponseUtil.unlogin();
+		}
+
+		LitemallUser user = userService.findById(userId);
+		String secret = user.getSecret();
+		String amount = JacksonUtil.parseString(body, "amount");
+		String address = JacksonUtil.parseString(body, "address");
+		
+		if(!ETMHelp.checkAccount(address)) {
+			return ResponseUtil.fail(PAY_CODE_FAIL,"地址不符合要求!");
+		}
+		
+		
+		String transactionId1 = "";
+		String transactionId2 = "";
+		String transactionId3 = "";		
+		LitemallDraw draw = new LitemallDraw();
+		draw.setAddress(address);
+		draw.setUserid(userId);
+		draw.setSecret(secret);
+		draw.setAmount(amount);
+		
+		Map<String, String> result1 = ETMHelp.draw1(secret, amount, ETMHelp.ADMIN_ADDRESS);
+		if("true".equals(result1.get("success"))) {
+			
+			transactionId1 = result1.get("transactionId");
+			//查交易是否打包	
+			WaitingTransaction(transactionId1);	
+			Map<String, String> result2 = ETMHelp.draw2(ETMHelp.ADMIN_SECRET, amount);
+			
+			if("true".equals(result2.get("success"))) {
+				
+				transactionId2 = result2.get("transactionId");
+				//查交易是否打包								
+				WaitingTransaction(transactionId2);				
+				
+				if(Long.parseLong(amount) > ETMHelp.TRANSACTION_COST) {
+					Map<String, String> result3 = ETMHelp.draw3(ETMHelp.ADMIN_SECRET, address, Long.parseLong(amount) - ETMHelp.TRANSACTION_COST);
+					
+					if("true".equals(result3.get("success"))) {
+						
+						transactionId3 = result3.get("transactionId");
+						
+					}else {
+						logger.error("draw step 3...");
+						logger.error(result3);
+					}
+				}else {
+					return ResponseUtil.fail(PAY_CODE_FAIL,"etm 手续费不足! ");
+				}
+				
+			}else {
+				logger.error("draw step 2...");
+				logger.error(result2);
+			}
+		}else {
+			logger.error("draw step 1...");
+			logger.error(result1);
+			
+			return ResponseUtil.fail(PAY_CODE_FAIL,"etm 提取失败! ");
+		}
+		
+		draw.setTransactionid1(transactionId1);
+		draw.setTransactionid2(transactionId2);
+		draw.setTransactionid3(transactionId3);
+		userService.addDrawRecord(draw);
+		return ResponseUtil.ok("处理成功!");
+		
+	}
+	*/
 	
 	/**
 	 * Etm 提取
@@ -171,53 +252,53 @@ public class WxPayController {
 		String amount = JacksonUtil.parseString(body, "amount");
 		String address = JacksonUtil.parseString(body, "address");
 		
+		if(!ETMHelp.checkAccount(address)) {
+			return ResponseUtil.fail(PAY_CODE_FAIL,"地址不符合要求!");
+		}
+		if(Long.parseLong(amount) <= ETMHelp.TRANSACTION_COST) {
+			return ResponseUtil.fail(PAY_CODE_FAIL,"etm 手续费不足! ");
+		}
+		
 		String transactionId1 = "";
-		String transactionId2 = "";
-		String transactionId3 = "";		
+	
 		LitemallDraw draw = new LitemallDraw();
 		draw.setAddress(address);
 		draw.setUserid(userId);
 		draw.setSecret(secret);
 		draw.setAmount(amount);
 		
-		Map<String, String> result1 = ETMHelp.draw1(secret, amount, ETMHelp.ADMIN_ADDRESS);
-		if("true".equals(result1.get("success"))) {
+		Map<String, String> result = ETMHelp.draw(secret,address , amount);
+		if("true".equals(result.get("success"))) {
 			
-			transactionId1 = result1.get("transactionId");
-			Map<String, String> result2 = ETMHelp.draw2(ETMHelp.ADMIN_SECRET, amount);
-			
-			if("true".equals(result2.get("success"))) {
-				
-				transactionId2 = result2.get("transactionId");
-				if(Long.parseLong(amount) > ETMHelp.TRANSACTION_COST) {
-					Map<String, String> result3 = ETMHelp.draw3(ETMHelp.ADMIN_SECRET, address, Long.parseLong(amount) - ETMHelp.TRANSACTION_COST);
-					
-					if("true".equals(result3.get("success"))) {
-						
-						transactionId3 = result3.get("transactionId");
-						
-					}else {
-						logger.error(result3);
-					}
-				}else {
-					return ResponseUtil.fail(PAY_CODE_FAIL,"etm 手续费不足! ");
-				}
-				
-			}else {
-				logger.error(result2);
-			}
+			transactionId1 = result.get("transactionId");
+			draw.setTransactionid1(transactionId1);
+			userService.addDrawRecord(draw);
 		}else {
-			logger.error(result1);
-			
+			logger.error(result);
 			return ResponseUtil.fail(PAY_CODE_FAIL,"etm 提取失败! ");
-		}
+		}			
+			
+				
 		
-		draw.setTransactionid1(transactionId1);
-		draw.setTransactionid2(transactionId2);
-		draw.setTransactionid3(transactionId3);
-		userService.addDrawRecord(draw);
 		return ResponseUtil.ok("处理成功!");
 		
+	}
+	
+	/**
+	 * 等待查交打包	
+	 * @param transactionId
+	 */
+	private void WaitingTransaction(String transactionId) {
+		
+		while (!ETMHelp.checkTransactions(transactionId)) {
+			try {
+				logger.info("Waiting for transaction confirmation ......["+transactionId+"]");
+				Thread.sleep(500L);
+			} catch (InterruptedException e) {
+				
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	/**

@@ -1,11 +1,13 @@
 package org.linlinjava.litemall.wx.util;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.core.util.HttpUtil;
 import org.linlinjava.litemall.core.util.JacksonUtil;
 
@@ -13,13 +15,23 @@ import com.google.gson.Gson;
 
 public class ETMHelp {
 	
-	private static final String URL_NEW_ACCOUNT = "http://47.111.160.173:4096/api/accounts/new";
+	private static final String URL_HOST = "http://47.111.160.173:4096";
+	//private static final String URL_HOST = "http://192.168.2.58:4096";
 	
-	private static final String URL_DAPP_TRANSACTIONS="http://47.111.160.173:4096/api/dapps/f304169790def442a0f0451347f13b6aadbe12305da59fc2a7c2d81cb94cb27a/transactions/unsigned";
+	public static final String DAPP_ID ="f304169790def442a0f0451347f13b6aadbe12305da59fc2a7c2d81cb94cb27a";
+	//public static final String DAPP_ID ="351eeae3766ad08b5219a5fc707cbd54ab2f1c97e94d2c57e65576a357806190";
 	
-	private static final String URL_COIN_RECHARGE = "http://47.111.160.173:4096/api/dapps/transaction";
+	private static final String URL_NEW_ACCOUNT = URL_HOST + "/api/accounts/new";
 	
-	private static final String URL_ETM_TRANSACTIONS = "http://47.111.160.173:4096/api/transactions";
+	private static final String URL_DAPP_TRANSACTIONS=URL_HOST + "/api/dapps/"+DAPP_ID+"/transactions/unsigned";
+	
+	private static final String URL_COIN_RECHARGE = URL_HOST + "/api/dapps/transaction";
+	
+	private static final String URL_ETM_TRANSACTIONS = URL_HOST + "/api/transactions";
+	
+	private static final String URL_ETM_DAPP_TRANSACTIONS_GET = URL_HOST + "/api/dapps/"+DAPP_ID+"/transactions/";
+	
+	private static final String URL_ETM_ACCOUNT_CHEACK=URL_HOST + "/api/accounts";
 	
 	
 	public static final String ADMIN_SECRET = "idle despair fence doctor claw market scare squeeze group custom divorce similar";
@@ -27,6 +39,8 @@ public class ETMHelp {
 	public static final String ADMIN_ADDRESS = "A7BCSUYQe8wShBUaAyw9YqQ5kiZ7qi5SAJ";
 	
 	public static final long  TRANSACTION_COST = 10000000L;
+	
+	private final Log logger = LogFactory.getLog(ETMHelp.class);
 	
 	/**
 	 * 生成etm帐户
@@ -40,6 +54,28 @@ public class ETMHelp {
 		return JacksonUtil.toMap(result);
 		
 	}
+	
+	/**
+	 * 验证etm address
+	 * @param address
+	 * @return
+	 */
+	public static boolean checkAccount(String address) {
+		String result = HttpUtil.sendGet(URL_ETM_ACCOUNT_CHEACK+"?address="+address, null);
+		Map<String,Object> map = JacksonUtil.toObjectMap(result);
+		return(Boolean)map.get("success");
+	}
+	
+	/**
+	 * 验证etm address
+	 * @param address
+	 * @return
+	 */
+	public static boolean checkTransactions(String transaction) {
+		String result = HttpUtil.sendGet(URL_ETM_DAPP_TRANSACTIONS_GET+transaction, null);
+		Map<String,Object> map = JacksonUtil.toObjectMap(result);
+		return(Boolean)map.get("success");
+	}	
 	
 	/**
 	 * etm 支付
@@ -118,8 +154,31 @@ public class ETMHelp {
 		
 		Gson gson = new Gson();
 		String req_body = gson.toJson(params);
-//		System.out.println(req_body);
+		
+		//System.out.println(req_body);
 		String result = HttpUtil.sendPut(URL_ETM_TRANSACTIONS, req_body);
+		
+		return JacksonUtil.toMap(result);
+	}
+	
+	
+	/**
+	 * 提取 
+	 * @param params
+	 * @return
+	 */
+	public static Map<String,String> draw(String secret, String recipientAddress, String amount ){
+		
+		List<Object> arg_list = new LinkedList<>();
+		arg_list.add(recipientAddress);
+		arg_list.add(amount);
+		Gson gson = new Gson();
+		String req_body = gson.toJson(arg_list);
+	
+			
+		//System.out.println(req_body);
+		String result = unsigned(secret,"0",1001,req_body);
+	
 		
 		return JacksonUtil.toMap(result);
 	}
@@ -134,7 +193,7 @@ public class ETMHelp {
 		
 		Gson gson = new Gson();
 		String req_body = gson.toJson(params);
-//		System.out.println(req_body);
+		System.out.println(req_body);
 		String result = HttpUtil.sendPut(URL_DAPP_TRANSACTIONS, req_body);
 		
 		return result;
@@ -176,7 +235,7 @@ public class ETMHelp {
 	public static Map<String,String> getBalance(String address) {
 		
 		
-		String result = HttpUtil.sendGet("http://47.111.160.173:4096/api/accounts/getBalance?address="+ address, "");
+		String result = HttpUtil.sendGet(URL_HOST + "/api/accounts/getBalance?address="+ address, "");
 		
 		return JacksonUtil.toMap(result);
 	}
@@ -189,7 +248,7 @@ public class ETMHelp {
 	public static Map<String,String> getDappBalance(String address) {
 		
 		
-		String result = HttpUtil.sendGet("http://47.111.160.173:4096/api/dapps/f304169790def442a0f0451347f13b6aadbe12305da59fc2a7c2d81cb94cb27a/sugram/balance?address="+ address, "");
+		String result = HttpUtil.sendGet(URL_HOST + "/api/dapps/"+DAPP_ID+"/sugram/balance?address="+ address, "");
 		
 		return JacksonUtil.toMap(result);
 	}
@@ -246,9 +305,9 @@ public class ETMHelp {
 		} 
 		*/
 		//String result = HttpUtil.sendGet("http://47.111.160.173:4096/api/accounts/getBalance?address=A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q", "");
-		 Map<String,Object> result = getBalanceList("A5GfRnWWBZL5EAQMQvpfmhJP65J3rTaW2Z");
+		 //Map<String,Object> result = getBalanceList("A5GfRnWWBZL5EAQMQvpfmhJP65J3rTaW2Z");
 		
-		System.out.println(result);
+		System.out.println(checkAccount("A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q"));
 		//String result = HttpUtil.sendGet("http://47.111.160.173:4096/api/accounts/getBalance?address=A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q", "");
 
 //		System.out.println(newAccount().get("secret"));
