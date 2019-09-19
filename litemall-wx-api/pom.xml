@@ -63,7 +63,12 @@
 		    <artifactId>java-jwt</artifactId>
 		    <version>3.4.1</version>
 		</dependency>
-
+        <dependency>
+            <groupId>com.okcoin.commons</groupId>
+            <artifactId>okex-java-sdk-api</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 </project>

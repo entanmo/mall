@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.linlinjava.litemall.db.dao.OrderEtmMapper">
+    <update id="updateWithOptimisticLocker" parameterType="map">
+        update litemall_order_etm
+
+        <set>
+            <if test="order.userId != null">
+                user_id = #{order.userId,jdbcType=INTEGER},
+            </if>
+            <if test="order.orderSn != null">
+                order_sn = #{order.orderSn,jdbcType=VARCHAR},
+            </if>
+            <if test="order.paySn != null">
+                pay_sn = #{order.paySn,jdbcType=VARCHAR},
+            </if>
+            <if test="order.size != null">
+                `size` = #{order.size,jdbcType=DECIMAL},
+            </if>
+            <if test="order.price != null">
+                price = #{order.price,jdbcType=DECIMAL},
+            </if>
+            <if test="order.cost != null">
+                cost = #{order.cost,jdbcType=DECIMAL},
+            </if>
+            <if test="order.currency != null">
+                currency = #{order.currency,jdbcType=VARCHAR},
+            </if>
+            <if test="order.payId != null">
+                pay_id = #{order.payId,jdbcType=VARCHAR},
+            </if>
+            <if test="order.payTime != null">
+                pay_time = #{order.payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="order.verifyTime != null">
+                verify_time = #{order.verifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="order.endTime != null">
+                end_time = #{order.endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="order.orderStatus != null">
+                order_status = #{order.orderStatus,jdbcType=SMALLINT},
+            </if>
+            <if test="order.addTime != null">
+                add_time = #{order.addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="order.priceTime != null">
+                price_time = #{order.priceTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="order.updateTime != null">
+                update_time = #{order.updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="order.deleted != null">
+                deleted = #{order.deleted,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{order.id,jdbcType=INTEGER} and update_time = #{lastUpdateTime,jdbcType=INTEGER}
+    </update>
+</mapper>

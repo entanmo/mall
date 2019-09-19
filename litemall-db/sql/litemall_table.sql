@@ -576,6 +576,48 @@ CREATE TABLE `litemall_order_goods` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单商品表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+DROP TABLE IF EXISTS `litemall_order_etm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `litemall_order_etm` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+   `user_id` int(11) DEFAULT NULL COMMENT '用户表的用户ID',
+   `order_sn` varchar(63) DEFAULT NULL COMMENT '订单编号',
+   `pay_sn` varchar(63) DEFAULT NULL COMMENT '付款编号',
+  `size` decimal(10,2)  NOT NULL DEFAULT '0' COMMENT '数量',
+  `price` decimal(10,6) NOT NULL DEFAULT '0' COMMENT '实时价格',
+  `cost` decimal(10,6)  NOT NULL DEFAULT '0' COMMENT '总花费 cny',
+  `currency` varchar(10) NOT NULL DEFAULT 'CNY' COMMENT '货币CNY，USD',
+   `pay_id` varchar(63) NOT NULL DEFAULT '' COMMENT '付款编号',
+  `pay_time` datetime DEFAULT NULL COMMENT '付款时间',
+   `verify_time` datetime DEFAULT NULL COMMENT '审核时间',
+  `end_time` datetime DEFAULT NULL COMMENT '订单关闭时间',
+  `price_time` datetime DEFAULT NULL COMMENT '交易所价格时间',
+   `order_status` smallint(6) NOT NULL COMMENT '订单状态',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='etm法币订单表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+DROP TABLE IF EXISTS `litemall_etm_payee`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+ CREATE TABLE `litemall_etm_payee` (
+ `id` bigint(20) NOT NULL AUTO_INCREMENT,
+ `username` varchar(63) NOT NULL DEFAULT '' COMMENT '名称',
+  `account` varchar(63) NOT NULL DEFAULT '' COMMENT '账号',
+  `type` tinyint(1) DEFAULT '0' COMMENT '类型 1.支付宝 2.微信',
+  `alipayPic` varchar(255) DEFAULT '''' COMMENT 'ali图片',
+  `wepayPic` varchar(255) DEFAULT '''' COMMENT '微信图片',
+ `size` double DEFAULT NULL COMMENT '大小',
+ `srcName` varchar(255)    DEFAULT NULL COMMENT '名称',
+ `unit` varchar(255) DEFAULT NULL COMMENT    '单位',
+   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',   PRIMARY KEY (`id`) )
+ ENGINE=InnoDB AUTO_INCREMENT=45    DEFAULT CHARSET=utf8mb4 COMMENT='etm_payee';
 --
 -- Table structure for table `litemall_permission`
 --
