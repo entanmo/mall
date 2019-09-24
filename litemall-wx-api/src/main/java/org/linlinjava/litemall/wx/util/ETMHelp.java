@@ -241,7 +241,7 @@ public class ETMHelp {
 	}
 	
 	/**
-	 * 主链余额
+	 * Dapp余额
 	 * @param address
 	 * @return
 	 */
