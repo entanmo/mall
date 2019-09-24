@@ -6,15 +6,15 @@ import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.linlinjava.litemall.admin.util.AdminResponseCode;
 import org.linlinjava.litemall.core.notify.NotifyService;
 import org.linlinjava.litemall.core.notify.NotifyType;
 import org.linlinjava.litemall.core.util.JacksonUtil;
 import org.linlinjava.litemall.core.util.ResponseUtil;
-import org.linlinjava.litemall.db.domain.LitemallComment;
-import org.linlinjava.litemall.db.domain.LitemallOrder;
-import org.linlinjava.litemall.db.domain.LitemallOrderGoods;
-import org.linlinjava.litemall.db.domain.UserVo;
+import org.linlinjava.litemall.db.domain.*;
 import org.linlinjava.litemall.db.service.*;
+import org.linlinjava.litemall.db.util.OrderEtmHandleOption;
+import org.linlinjava.litemall.db.util.OrderEtmUtil;
 import org.linlinjava.litemall.db.util.OrderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +38,8 @@ public class AdminOrderService {
     private LitemallOrderGoodsService orderGoodsService;
     @Autowired
     private LitemallOrderService orderService;
+    @Autowired
+    private LitemallOrderEtmService orderEtmService;
     @Autowired
     private LitemallGoodsProductService productService;
     @Autowired
@@ -242,5 +244,52 @@ public class AdminOrderService {
 
         return ResponseUtil.ok();
     }
+    public Object verify(String body) {
 
+        Integer orderId = JacksonUtil.parseInteger(body, "orderId");
+        if (orderId == null) {
+            return ResponseUtil.badArgument();
+        }
+
+        LitemallOrderEtm order = orderEtmService.findById(orderId);
+        if (order == null) {
+            return ResponseUtil.badArgument();
+        }
+
+        OrderEtmHandleOption handleOption = OrderEtmUtil.build(order);
+        if (!handleOption.isVerify()) {
+            return ResponseUtil.fail(ORDER_CONFIRM_NOT_ALLOWED, "订单不能确认");
+        }
+
+        order.setOrderStatus(OrderEtmUtil.STATUS_CONFIRM);
+        order.setVerifyTime(LocalDateTime.now());
+        if (orderEtmService.updateWithOptimisticLocker(order) == 0) {
+            return ResponseUtil.updatedDateExpired();
+        }
+        return ResponseUtil.ok();
+    }
+    public Object reject(String body) {
+
+        Integer orderId = JacksonUtil.parseInteger(body, "orderId");
+        if (orderId == null) {
+            return ResponseUtil.badArgument();
+        }
+
+        LitemallOrderEtm order = orderEtmService.findById(orderId);
+        if (order == null) {
+            return ResponseUtil.badArgument();
+        }
+
+        OrderEtmHandleOption handleOption = OrderEtmUtil.build(order);
+        if (!handleOption.isReject()) {
+            return ResponseUtil.fail(ORDER_CONFIRM_NOT_ALLOWED, "订单不能确认");
+        }
+
+        order.setOrderStatus(OrderEtmUtil.STATUS_REJECT);
+        order.setVerifyTime(LocalDateTime.now());
+        if (orderEtmService.updateWithOptimisticLocker(order) == 0) {
+            return ResponseUtil.updatedDateExpired();
+        }
+        return ResponseUtil.ok();
+    }
 }

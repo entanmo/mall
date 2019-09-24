@@ -38,4 +38,7 @@ public class WxResponseCode {
     public static final int PAY_CODE_ORDERSN_UNKNOWN= 752;
     public static final int PAY_CODE_ERROR_PASSWORD= 753;
 
+    public static final Integer ETM_PRICE_ERROR = 760;
+
+
 }

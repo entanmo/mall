@@ -6,6 +6,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.okcoin.commons.okex.open.api.bean.spot.result.Ticker;
+import com.okcoin.commons.okex.open.api.config.APIConfiguration;
+import com.okcoin.commons.okex.open.api.enums.I18nEnum;
+import com.okcoin.commons.okex.open.api.service.spot.SpotProductAPIService;
+import com.okcoin.commons.okex.open.api.service.spot.impl.SpotProductAPIServiceImpl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.core.util.HttpUtil;
@@ -68,7 +73,7 @@ public class ETMHelp {
 	
 	/**
 	 * 验证etm address
-	 * @param address
+	 * @param transaction
 	 * @return
 	 */
 	public static boolean checkTransactions(String transaction) {
@@ -79,7 +84,7 @@ public class ETMHelp {
 	
 	/**
 	 * etm 支付
-	 * @param params
+	 * @param address
 	 * @return
 	 */
 	public static Map<String,String> pay(String secret, String address, String amount ){
@@ -100,7 +105,7 @@ public class ETMHelp {
 	
 	/**
 	 * 提取 setp 1
-	 * @param params
+	 * @param amount
 	 * @return
 	 */
 	public static Map<String,String> draw1(String secret,  String amount ,String address ){
@@ -121,7 +126,7 @@ public class ETMHelp {
 	
 	/**
 	 * 提取 setp 2
-	 * @param params
+	 * @param secret
 	 * @return
 	 */
 	public static Map<String,String> draw2(String secret,  String amount ){
@@ -141,7 +146,7 @@ public class ETMHelp {
 	
 	/**
 	 * 提取 setp 3
-	 * @param params
+	 * @param recipientAddress
 	 * @return
 	 */
 	public static Map<String,String> draw3(String secret, String recipientAddress, long amount ){
@@ -164,7 +169,7 @@ public class ETMHelp {
 	
 	/**
 	 * 提取 
-	 * @param params
+	 * @param recipientAddress
 	 * @return
 	 */
 	public static Map<String,String> draw(String secret, String recipientAddress, String amount ){
@@ -268,7 +273,26 @@ public class ETMHelp {
 		return JacksonUtil.toObjectMap(result);
 	}
 	
-	
+	public static Object getEtmTickOkex(){
+		final APIConfiguration config = new APIConfiguration();
+
+		config.setEndpoint("https://www.okex.com/");
+		config.setApiKey("");
+		config.setSecretKey("");
+		config.setPassphrase("");
+		config.setPrint(true);
+		config.setI18n(I18nEnum.SIMPLIFIED_CHINESE);
+		SpotProductAPIService spotProductAPIService = new SpotProductAPIServiceImpl(config);
+		Ticker ticker = null;
+		try {
+			 ticker = spotProductAPIService.getTickerByProductId("ETM-USDT");
+		}catch (Exception e){
+			System.out.println(e);
+		}
+
+		// eg: {"epoch":"1520848286.633","iso":"2018-03-12T09:51:26.633Z"}
+		return ticker;
+	}
 	
 	public static void main(String[] args) {
 		
@@ -307,7 +331,8 @@ public class ETMHelp {
 		//String result = HttpUtil.sendGet("http://47.111.160.173:4096/api/accounts/getBalance?address=A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q", "");
 		 //Map<String,Object> result = getBalanceList("A5GfRnWWBZL5EAQMQvpfmhJP65J3rTaW2Z");
 		
-		System.out.println(checkAccount("A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q"));
+//		System.out.println(checkAccount("A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q"));
+//		getEtmPriceOkex();
 		//String result = HttpUtil.sendGet("http://47.111.160.173:4096/api/accounts/getBalance?address=A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q", "");
 
 //		System.out.println(newAccount().get("secret"));

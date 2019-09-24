@@ -23,6 +23,8 @@ public class SystemConfig {
     public final static String LITEMALL_ORDER_UNPAID = "litemall_order_unpaid";
     public final static String LITEMALL_ORDER_UNCONFIRM = "litemall_order_unconfirm";
     public final static String LITEMALL_ORDER_COMMENT = "litemall_order_comment";
+
+    public final static String LITEMALL_ORDER_ETM_UNPAID = "litemall_order_etm_unpaid";
     // 商场相关配置
     public final static String LITEMALL_MALL_NAME = "litemall_mall_name";
     public final static String LITEMALL_MALL_ADDRESS = "litemall_mall_address";
@@ -112,6 +114,9 @@ public class SystemConfig {
         return getConfig(LITEMALL_MALL_QQ);
     }
 
+    public static Integer getOrderEtmUnpaid() {
+        return  getConfigInt(LITEMALL_ORDER_ETM_UNPAID);
+    }
     public static void setConfigs(Map<String, String> configs) {
         SYSTEM_CONFIGS = configs;
     }
