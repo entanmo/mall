@@ -71,7 +71,7 @@ public class WxPayController {
 		
 		
 		String amount = JacksonUtil.parseString(body, "amount");
-		Map<String, String> result = ETMHelp.pay(secret, "A5AbJXqZtx5R9xEnU6cS4KpGGq4cAAUyxX", amount);
+		Map<String, String> result = ETMHelp.pay(secret, ETMHelp.COLLECTIONS_ADDRESS, amount);
 		
 		if("true".equals(result.get("success"))) {
 			

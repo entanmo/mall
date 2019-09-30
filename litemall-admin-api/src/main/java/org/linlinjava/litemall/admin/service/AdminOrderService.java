@@ -7,6 +7,7 @@ import com.github.binarywang.wxpay.service.WxPayService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.admin.util.AdminResponseCode;
+import org.linlinjava.litemall.admin.util.ETMHelp;
 import org.linlinjava.litemall.core.notify.NotifyService;
 import org.linlinjava.litemall.core.notify.NotifyType;
 import org.linlinjava.litemall.core.util.JacksonUtil;
@@ -92,13 +93,14 @@ public class AdminOrderService {
     public Object refund(String body) {
         Integer orderId = JacksonUtil.parseInteger(body, "orderId");
         String refundMoney = JacksonUtil.parseString(body, "refundMoney");
+        
         if (orderId == null) {
             return ResponseUtil.badArgument();
         }
         if (StringUtils.isEmpty(refundMoney)) {
             return ResponseUtil.badArgument();
         }
-
+       
         LitemallOrder order = orderService.findById(orderId);
         if (order == null) {
             return ResponseUtil.badArgument();
@@ -112,8 +114,18 @@ public class AdminOrderService {
         if (!order.getOrderStatus().equals(OrderUtil.STATUS_REFUND)) {
             return ResponseUtil.fail(ORDER_CONFIRM_NOT_ALLOWED, "订单不能确认收货");
         }
+        
+        LitemallUser user = userService.findById(order.getUserId());        
+        //etm 单位换算
+        Long refund = Long.valueOf(refundMoney) * 100000000;
+        // ETM 退款
+        Map<String,String> result =  ETMHelp.refund(user.getAddress(), refund.toString());
+        if(!"true".equals(result.get("success"))) {
+        	 logger.error(result.get("error"));
+             return ResponseUtil.fail(ORDER_REFUND_FAILED, "订单退款失败");
+        }
 
-        // 微信退款
+       /* // 微信退款
         WxPayRefundRequest wxPayRefundRequest = new WxPayRefundRequest();
         wxPayRefundRequest.setOutTradeNo(order.getOrderSn());
         wxPayRefundRequest.setOutRefundNo("refund_" + order.getOrderSn());
@@ -136,7 +148,7 @@ public class AdminOrderService {
         if (!wxPayRefundResult.getResultCode().equals("SUCCESS")) {
             logger.warn("refund fail: " + wxPayRefundResult.getReturnMsg());
             return ResponseUtil.fail(ORDER_REFUND_FAILED, "订单退款失败");
-        }
+        }*/
 
         // 设置订单取消状态
         order.setOrderStatus(OrderUtil.STATUS_REFUND_CONFIRM);
@@ -157,8 +169,8 @@ public class AdminOrderService {
         //TODO 发送邮件和短信通知，这里采用异步发送
         // 退款成功通知用户, 例如“您申请的订单退款 [ 单号:{1} ] 已成功，请耐心等待到账。”
         // 注意订单号只发后6位
-        notifyService.notifySmsTemplate(order.getMobile(), NotifyType.REFUND,
-                new String[]{order.getOrderSn().substring(8, 14)});
+        //notifyService.notifySmsTemplate(order.getMobile(), NotifyType.REFUND,
+        //        new String[]{order.getOrderSn().substring(8, 14)});
 
         logHelper.logOrderSucceed("退款", "订单编号 " + orderId);
         return ResponseUtil.ok();

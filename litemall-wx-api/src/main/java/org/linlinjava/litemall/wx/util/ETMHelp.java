@@ -38,6 +38,7 @@ public class ETMHelp {
 	
 	private static final String URL_ETM_ACCOUNT_CHEACK=URL_HOST + "/api/accounts";
 	
+	public static final String COLLECTIONS_ADDRESS = "AFgqezrZEhLWUftzvyZTt6UWAGddGuYkNk";
 	
 	public static final String ADMIN_SECRET = "idle despair fence doctor claw market scare squeeze group custom divorce similar";
 	
@@ -246,7 +247,7 @@ public class ETMHelp {
 	}
 	
 	/**
-	 * 主链余额
+	 * Dapp余额
 	 * @param address
 	 * @return
 	 */
