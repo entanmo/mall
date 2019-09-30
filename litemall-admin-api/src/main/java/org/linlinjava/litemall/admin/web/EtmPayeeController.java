@@ -13,6 +13,7 @@ import org.linlinjava.litemall.core.validator.Order;
 import org.linlinjava.litemall.core.validator.Sort;
 import org.linlinjava.litemall.db.domain.LitemallEtmPayee;
 import org.linlinjava.litemall.db.service.LitemallEtmPayeeService;
+import org.linlinjava.litemall.db.service.LitemallOrderEtmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
@@ -30,7 +31,8 @@ public class EtmPayeeController {
     private final Log logger = LogFactory.getLog(EtmPayeeController.class);
 
     @Autowired
-    private LitemallEtmPayeeService adminService;
+    private LitemallEtmPayeeService etmPayeeService;
+
     @Autowired
     private LogHelper logHelper;
 
@@ -42,7 +44,7 @@ public class EtmPayeeController {
                        @RequestParam(defaultValue = "10") Integer limit,
                        @Sort @RequestParam(defaultValue = "add_time") String sort,
                        @Order @RequestParam(defaultValue = "desc") String order) {
-        List<LitemallEtmPayee> adminList = adminService.querySelective(username, page, limit, sort, order);
+        List<LitemallEtmPayee> adminList = etmPayeeService.querySelective(username, page, limit, sort, order);
         return ResponseUtil.okList(adminList);
     }
 
@@ -71,7 +73,7 @@ public class EtmPayeeController {
         }
 
         String username = admin.getUsername();
-        List<LitemallEtmPayee> adminList = adminService.findAdmin(username);
+        List<LitemallEtmPayee> adminList = etmPayeeService.findAdmin(username);
         if (adminList.size() > 0) {
             return ResponseUtil.fail(ADMIN_NAME_EXIST, "管理员已经存在");
         }
@@ -80,7 +82,7 @@ public class EtmPayeeController {
 //        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 //        String encodedPassword = encoder.encode(rawPassword);
 //        admin.setPassword(encodedPassword);
-        adminService.add(admin);
+        etmPayeeService.add(admin);
         logHelper.logAuthSucceed("添加管理员", username);
         return ResponseUtil.ok(admin);
     }
@@ -89,7 +91,7 @@ public class EtmPayeeController {
     @RequiresPermissionsDesc(menu = {"etm交易管理", "etm支付账号管理"}, button = "详情")
     @GetMapping("/read")
     public Object read(@NotNull Long id) {
-        LitemallEtmPayee admin = adminService.findById(id);
+        LitemallEtmPayee admin = etmPayeeService.findById(id);
         return ResponseUtil.ok(admin);
     }
 
@@ -110,7 +112,7 @@ public class EtmPayeeController {
         // 不允许管理员通过编辑接口修改密码
 //        admin.setPassword(null);
 
-        if (adminService.updateById(admin) == 0) {
+        if (etmPayeeService.updateById(admin) == 0) {
             return ResponseUtil.updatedDataFailed();
         }
 
@@ -134,7 +136,7 @@ public class EtmPayeeController {
 //            return ResponseUtil.fail(ADMIN_DELETE_NOT_ALLOWED, "管理员不能删除自己账号");
 //        }
 
-        adminService.deleteById(anotherAdminId);
+        etmPayeeService.deleteById(anotherAdminId);
         logHelper.logAuthSucceed("删除管理员", admin.getUsername());
         return ResponseUtil.ok();
     }

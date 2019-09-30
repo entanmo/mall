@@ -55,7 +55,7 @@ public class LitemallEtmPayee {
      *
      * @mbg.generated
      */
-    private Boolean type;
+    private Short type;
 
     /**
      *
@@ -209,7 +209,7 @@ public class LitemallEtmPayee {
      *
      * @mbg.generated
      */
-    public Boolean getType() {
+    public Short getType() {
         return type;
     }
 
@@ -221,7 +221,7 @@ public class LitemallEtmPayee {
      *
      * @mbg.generated
      */
-    public void setType(Boolean type) {
+    public void setType(Short type) {
         this.type = type;
     }
 
@@ -592,7 +592,7 @@ public class LitemallEtmPayee {
         id("id", "id", "BIGINT", false),
         username("username", "username", "VARCHAR", false),
         account("account", "account", "VARCHAR", false),
-        type("type", "type", "BIT", true),
+        type("type", "type", "SMALLINT", true),
         alipaypic("alipayPic", "alipaypic", "VARCHAR", false),
         wepaypic("wepayPic", "wepaypic", "VARCHAR", false),
         size("size", "size", "DOUBLE", true),

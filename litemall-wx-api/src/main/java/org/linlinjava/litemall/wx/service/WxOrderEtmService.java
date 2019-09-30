@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,7 +59,7 @@ public class WxOrderEtmService {
         }
 
         List<Short> orderStatus = OrderEtmUtil.orderStatus(showType);
-        List<LitemallOrderEtm> orderList = orderService.queryByOrderStatus(orderStatus, page, limit, sort, order);
+        List<LitemallOrderEtm> orderList = orderService.queryByOrderStatus("",orderStatus, page, limit, sort, order);
 
         List<Map<String, Object>> orderVoList = new ArrayList<>(orderList.size());
         for (LitemallOrderEtm o : orderList) {
@@ -98,6 +100,9 @@ public class WxOrderEtmService {
         if (!order.getUserId().equals(userId)) {
             return ResponseUtil.fail(ORDER_INVALID, "不是当前用户的订单");
         }
+        if (101 != order.getOrderStatus()) {
+            return ResponseUtil.fail(ORDER_UNKNOWN, "订单无法查看");
+        }
 
 //        Map<String, Object> orderVo = new HashMap<String, Object>();
 //        orderVo.put("id", order.getId());
@@ -120,6 +125,8 @@ public class WxOrderEtmService {
         Map<String, Object> result = new HashMap<>();
         result.put("order", order);
         result.put("payee", litemallEtmPayee);
+        Long second = order.getAddTime().toEpochSecond(ZoneOffset.of("+8"));
+        result.put("timeSecond", second);
 //        result.put("orderGoods", orderGoodsList);
 
         // 订单状态为已发货且物流信息不为空
@@ -203,6 +210,10 @@ public class WxOrderEtmService {
 
         Integer orderId = null;
         LitemallOrderEtm order = null;
+        LitemallEtmPayee litemallEtmPayee = etmPayeeService.randomPayeeByType(type);
+        if(litemallEtmPayee ==null){
+           return  ResponseUtil.fail(ETM_PAYID_ERROR,"没有找到收款账号！");
+        }
         // 订单
         order = new LitemallOrderEtm();
         order.setUserId(userId);
@@ -211,7 +222,7 @@ public class WxOrderEtmService {
         order.setCost(BigDecimal.valueOf(cost));
         order.setPrice(BigDecimal.valueOf(price));
         order.setSize(BigDecimal.valueOf(size));
-        order.setPayId(etmPayeeService.randomPayeeByType(type).getId()+"");
+        order.setPayId(litemallEtmPayee.getId()+"");
         order.setCurrency(currency);
         // 添加订单表项
         orderService.add(order);
@@ -277,97 +288,97 @@ public class WxOrderEtmService {
      * @param body   订单信息，{ orderId：xxx }
      * @return 订单操作结果
      */
-    public Object confirm(Integer userId, String body) {
-
-        Integer orderId = JacksonUtil.parseInteger(body, "orderId");
-        if (orderId == null) {
-            return ResponseUtil.badArgument();
-        }
-
-        LitemallOrderEtm order = orderService.findById(orderId);
-        if (order == null) {
-            return ResponseUtil.badArgument();
-        }
-        if (!order.getUserId().equals(userId)) {
-            return ResponseUtil.badArgumentValue();
-        }
-
-        OrderEtmHandleOption handleOption = OrderEtmUtil.build(order);
-        if (!handleOption.isConfirm()) {
-            return ResponseUtil.fail(ORDER_INVALID_OPERATION, "订单不能确认付款");
-        }
-
-        order.setOrderStatus(OrderEtmUtil.STATUS_CONFIRM);
-        order.setVerifyTime(LocalDateTime.now());
-        if (orderService.updateWithOptimisticLocker(order) == 0) {
-            return ResponseUtil.updatedDateExpired();
-        }
-        return ResponseUtil.ok();
-    }
-    public Object verify(Integer userId, String body) {
-        if (userId == null) {
-            return ResponseUtil.unlogin();
-        }
-        Integer orderId = JacksonUtil.parseInteger(body, "orderId");
-        if (orderId == null) {
-            return ResponseUtil.badArgument();
-        }
-
-        LitemallOrderEtm order = orderService.findById(orderId);
-        if (order == null) {
-            return ResponseUtil.badArgument();
-        }
-        if (!order.getUserId().equals(userId)) {
-            return ResponseUtil.badArgumentValue();
-        }
-
-        OrderEtmHandleOption handleOption = OrderEtmUtil.build(order);
-        if (!handleOption.isVerify()) {
-            return ResponseUtil.fail(ORDER_INVALID_OPERATION, "订单不能确认付款");
-        }
-
-//        Short comments = orderGoodsService.getComments(orderId);
-//        order.setComments(comments);
-
-        order.setOrderStatus(OrderEtmUtil.STATUS_VERIFY);
-        order.setVerifyTime(LocalDateTime.now());
-        if (orderService.updateWithOptimisticLocker(order) == 0) {
-            return ResponseUtil.updatedDateExpired();
-        }
-        return ResponseUtil.ok();
-    }
-    public Object reject(Integer userId, String body) {
-        if (userId == null) {
-            return ResponseUtil.unlogin();
-        }
-        Integer orderId = JacksonUtil.parseInteger(body, "orderId");
-        if (orderId == null) {
-            return ResponseUtil.badArgument();
-        }
-
-        LitemallOrderEtm order = orderService.findById(orderId);
-        if (order == null) {
-            return ResponseUtil.badArgument();
-        }
-        if (!order.getUserId().equals(userId)) {
-            return ResponseUtil.badArgumentValue();
-        }
-
-        OrderEtmHandleOption handleOption = OrderEtmUtil.build(order);
-        if (!handleOption.isReject()) {
-            return ResponseUtil.fail(ORDER_INVALID_OPERATION, "订单不能确认付款");
-        }
-
-//        Short comments = orderGoodsService.getComments(orderId);
-//        order.setComments(comments);
-
-        order.setOrderStatus(OrderEtmUtil.STATUS_REJECT);
-//        order.setConfirmTime(LocalDateTime.now());
-        if (orderService.updateWithOptimisticLocker(order) == 0) {
-            return ResponseUtil.updatedDateExpired();
-        }
-        return ResponseUtil.ok();
-    }
+//    public Object confirm(Integer userId, String body) {
+//
+//        Integer orderId = JacksonUtil.parseInteger(body, "orderId");
+//        if (orderId == null) {
+//            return ResponseUtil.badArgument();
+//        }
+//
+//        LitemallOrderEtm order = orderService.findById(orderId);
+//        if (order == null) {
+//            return ResponseUtil.badArgument();
+//        }
+//        if (!order.getUserId().equals(userId)) {
+//            return ResponseUtil.badArgumentValue();
+//        }
+//
+//        OrderEtmHandleOption handleOption = OrderEtmUtil.build(order);
+//        if (!handleOption.isConfirm()) {
+//            return ResponseUtil.fail(ORDER_INVALID_OPERATION, "订单不能确认付款");
+//        }
+//
+//        order.setOrderStatus(OrderEtmUtil.STATUS_CONFIRM);
+//        order.setVerifyTime(LocalDateTime.now());
+//        if (orderService.updateWithOptimisticLocker(order) == 0) {
+//            return ResponseUtil.updatedDateExpired();
+//        }
+//        return ResponseUtil.ok();
+//    }
+//    public Object verify(Integer userId, String body) {
+//        if (userId == null) {
+//            return ResponseUtil.unlogin();
+//        }
+//        Integer orderId = JacksonUtil.parseInteger(body, "orderId");
+//        if (orderId == null) {
+//            return ResponseUtil.badArgument();
+//        }
+//
+//        LitemallOrderEtm order = orderService.findById(orderId);
+//        if (order == null) {
+//            return ResponseUtil.badArgument();
+//        }
+//        if (!order.getUserId().equals(userId)) {
+//            return ResponseUtil.badArgumentValue();
+//        }
+//
+//        OrderEtmHandleOption handleOption = OrderEtmUtil.build(order);
+//        if (!handleOption.isVerify()) {
+//            return ResponseUtil.fail(ORDER_INVALID_OPERATION, "订单不能确认付款");
+//        }
+//
+////        Short comments = orderGoodsService.getComments(orderId);
+////        order.setComments(comments);
+//
+//        order.setOrderStatus(OrderEtmUtil.STATUS_VERIFY);
+//        order.setVerifyTime(LocalDateTime.now());
+//        if (orderService.updateWithOptimisticLocker(order) == 0) {
+//            return ResponseUtil.updatedDateExpired();
+//        }
+//        return ResponseUtil.ok();
+//    }
+//    public Object reject(Integer userId, String body) {
+//        if (userId == null) {
+//            return ResponseUtil.unlogin();
+//        }
+//        Integer orderId = JacksonUtil.parseInteger(body, "orderId");
+//        if (orderId == null) {
+//            return ResponseUtil.badArgument();
+//        }
+//
+//        LitemallOrderEtm order = orderService.findById(orderId);
+//        if (order == null) {
+//            return ResponseUtil.badArgument();
+//        }
+//        if (!order.getUserId().equals(userId)) {
+//            return ResponseUtil.badArgumentValue();
+//        }
+//
+//        OrderEtmHandleOption handleOption = OrderEtmUtil.build(order);
+//        if (!handleOption.isReject()) {
+//            return ResponseUtil.fail(ORDER_INVALID_OPERATION, "订单不能确认付款");
+//        }
+//
+////        Short comments = orderGoodsService.getComments(orderId);
+////        order.setComments(comments);
+//
+//        order.setOrderStatus(OrderEtmUtil.STATUS_REJECT);
+////        order.setConfirmTime(LocalDateTime.now());
+//        if (orderService.updateWithOptimisticLocker(order) == 0) {
+//            return ResponseUtil.updatedDateExpired();
+//        }
+//        return ResponseUtil.ok();
+//    }
     public Object pay(Integer userId, String body) {
         if (userId == null) {
             return ResponseUtil.unlogin();

@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.linlinjava.litemall.admin.annotation.RequiresPermissionsDesc;
 import org.linlinjava.litemall.admin.service.AdminOrderService;
+import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.core.validator.Order;
 import org.linlinjava.litemall.core.validator.Sort;
 import org.linlinjava.litemall.db.service.LitemallOrderEtmService;
@@ -36,15 +37,16 @@ public class AdminOrderEtmController {
      * @return
      */
     @RequiresPermissions("admin:orderetm:list")
-    @RequiresPermissionsDesc(menu = {"商场管理", "订单管理"}, button = "查询")
+    @RequiresPermissionsDesc(menu = {"etm交易管理", "订单管理"}, button = "查询")
     @GetMapping("/list")
     public Object list(
+                         String orderSn,
                        @RequestParam(required = false) List<Short> orderStatusArray,
                        @RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10") Integer limit,
                        @Sort @RequestParam(defaultValue = "add_time") String sort,
                        @Order @RequestParam(defaultValue = "desc") String order) {
-        return orderEtmService.queryByOrderStatus(  orderStatusArray, page, limit, sort, order);
+        return ResponseUtil.okList(orderEtmService.queryByOrderStatus( orderSn, orderStatusArray, page, limit, sort, order));
     }
 
     /**
@@ -53,11 +55,11 @@ public class AdminOrderEtmController {
      * @param id
      * @return
      */
-    @RequiresPermissions("admin:order:read")
-    @RequiresPermissionsDesc(menu = {"商场管理", "订单管理"}, button = "详情")
+    @RequiresPermissions("admin:orderetm:read")
+    @RequiresPermissionsDesc(menu = {"etm交易管理", "订单管理"}, button = "详情")
     @GetMapping("/detail")
     public Object detail(@NotNull Integer id) {
-        return orderEtmService.findById(id);
+        return ResponseUtil.ok(orderEtmService.orderInfo(id));
     }
 
     /**
@@ -73,13 +75,13 @@ public class AdminOrderEtmController {
 //        return orderEtmService.deleteById(body);
 //    }
     @RequiresPermissions("admin:orderetm:verify")
-    @RequiresPermissionsDesc(menu = {"商场管理", "订单管理"}, button = "订单审核")
+    @RequiresPermissionsDesc(menu = {"etm交易管理", "订单管理"}, button = "订单审核")
     @PostMapping("verify")
     public Object confirm(@RequestBody String body) {
         return adminOrderService.verify(body);
     }
     @RequiresPermissions("admin:orderetm:reject")
-    @RequiresPermissionsDesc(menu = {"商场管理", "订单管理"}, button = "订单打回")
+    @RequiresPermissionsDesc(menu = {"etm交易管理", "订单管理"}, button = "订单打回")
     @PostMapping("reject")
     public Object reject(@RequestBody String body) {
         return adminOrderService.reject(body);
