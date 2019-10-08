@@ -2,6 +2,7 @@ package org.linlinjava.litemall.db.service;
 
 import com.github.pagehelper.PageHelper;
 import org.linlinjava.litemall.db.dao.EtmPayeeMapper;
+import org.linlinjava.litemall.db.dao.LitemallEtmPayeeMapper;
 import org.linlinjava.litemall.db.dao.LitemallOrderEtmMapper;
 import org.linlinjava.litemall.db.dao.OrderEtmMapper;
 import org.linlinjava.litemall.db.domain.LitemallEtmPayee;
@@ -30,6 +31,8 @@ public class LitemallOrderEtmService {
     private OrderEtmMapper OrderEtmMapper;
     @Resource
     private EtmPayeeMapper etmPayeeMapper;
+    @Resource
+    private LitemallEtmPayeeMapper litemallEtmPayeeMapper;
 
     public int add(LitemallOrderEtm order) {
         order.setAddTime(LocalDateTime.now());
@@ -78,11 +81,14 @@ public class LitemallOrderEtmService {
         return orderSn;
     }
 
-    public List<LitemallOrderEtm> queryByOrderStatus( List<Short> orderStatus, Integer page, Integer limit, String sort, String order) {
+    public List<LitemallOrderEtm> queryByOrderStatus( String orderSn,List<Short> orderStatus, Integer page, Integer limit, String sort, String order) {
         LitemallOrderEtmExample example = new LitemallOrderEtmExample();
         example.setOrderByClause(LitemallOrderEtm.Column.addTime.desc());
         LitemallOrderEtmExample.Criteria criteria = example.or();
-//        criteria.andUserIdEqualTo(userId);
+
+        if (!StringUtils.isEmpty(orderSn)) {
+            criteria.andOrderSnEqualTo(orderSn);
+        }
         if (orderStatus != null) {
             criteria.andOrderStatusIn(orderStatus);
         }
@@ -155,32 +161,28 @@ public class LitemallOrderEtmService {
         return LitemallOrderEtmMapper.selectOneByExample(example);
     }
 
-    public Map<Object, Object> orderInfo(Integer userId) {
-        LitemallOrderEtmExample example = new LitemallOrderEtmExample();
-        example.or().andUserIdEqualTo(userId).andDeletedEqualTo(false);
-        List<LitemallOrderEtm> orders = LitemallOrderEtmMapper.selectByExampleSelective(example, LitemallOrderEtm.Column.orderStatus);
+    public Map<Object, Object> orderInfo(Integer orderId) {
+        LitemallOrderEtm litemallOrderEtm =   LitemallOrderEtmMapper.selectByPrimaryKey(orderId);
 
-        int unpaid = 0;
-        int unship = 0;
-        int unrecv = 0;
-        int uncomment = 0;
-//        for (LitemallOrderEtm order : orders) {
-//            if (OrderUtil.isCreateStatus(order)) {
-//                unpaid++;
-//            } else if (OrderUtil.isPayStatus(order)) {
-//                unship++;
-//            } else if (OrderUtil.isShipStatus(order)) {
-//                unrecv++;
-//            } else {
-//                // do nothing
-//            }
-//        }
+        LitemallEtmPayee litemallEtmPayee = litemallEtmPayeeMapper.selectByPrimaryKey(Long.parseLong(litemallOrderEtm.getPayId()));
 
         Map<Object, Object> orderInfo = new HashMap<Object, Object>();
-        orderInfo.put("unpaid", unpaid);
-        orderInfo.put("unship", unship);
-        orderInfo.put("unrecv", unrecv);
-        orderInfo.put("uncomment", uncomment);
+        orderInfo.put("id", litemallOrderEtm.getId());
+        orderInfo.put("user_id", litemallOrderEtm.getUserId());
+        orderInfo.put("order_sn", litemallOrderEtm.getOrderSn());
+        orderInfo.put("pay_sn", litemallOrderEtm.getPaySn());
+        orderInfo.put("size", litemallOrderEtm.getSize());
+        orderInfo.put("price", litemallOrderEtm.getPrice());
+        orderInfo.put("cost", litemallOrderEtm.getCost());
+        orderInfo.put("currency", litemallOrderEtm.getCurrency());
+        orderInfo.put("pay_id", litemallOrderEtm.getPayId());
+        orderInfo.put("pay_time", litemallOrderEtm.getPayTime());
+        orderInfo.put("verify_time", litemallOrderEtm.getVerifyTime());
+        orderInfo.put("price_time", litemallOrderEtm.getPriceTime());
+        orderInfo.put("order_status", litemallOrderEtm.getOrderStatus());
+        orderInfo.put("add_time", litemallOrderEtm.getAddTime());
+        orderInfo.put("update_time", litemallOrderEtm.getUpdateTime());
+        orderInfo.put("type", litemallEtmPayee.getType());
         return orderInfo;
 
     }

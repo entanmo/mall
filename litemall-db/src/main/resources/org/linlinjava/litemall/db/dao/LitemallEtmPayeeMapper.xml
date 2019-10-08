@@ -9,7 +9,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="account" jdbcType="VARCHAR" property="account" />
-    <result column="type" jdbcType="BIT" property="type" />
+    <result column="type" jdbcType="SMALLINT" property="type" />
     <result column="alipayPic" jdbcType="VARCHAR" property="alipaypic" />
     <result column="wepayPic" jdbcType="VARCHAR" property="wepaypic" />
     <result column="size" jdbcType="DOUBLE" property="size" />
@@ -216,7 +216,7 @@
       alipayPic, wepayPic, `size`, 
       srcName, unit, add_time, 
       update_time, deleted)
-    values (#{username,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{type,jdbcType=BIT}, 
+    values (#{username,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{type,jdbcType=SMALLINT}, 
       #{alipaypic,jdbcType=VARCHAR}, #{wepaypic,jdbcType=VARCHAR}, #{size,jdbcType=DOUBLE}, 
       #{srcname,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
@@ -273,7 +273,7 @@
         #{account,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
-        #{type,jdbcType=BIT},
+        #{type,jdbcType=SMALLINT},
       </if>
       <if test="alipaypic != null">
         #{alipaypic,jdbcType=VARCHAR},
@@ -328,7 +328,7 @@
         account = #{record.account,jdbcType=VARCHAR},
       </if>
       <if test="record.type != null">
-        `type` = #{record.type,jdbcType=BIT},
+        `type` = #{record.type,jdbcType=SMALLINT},
       </if>
       <if test="record.alipaypic != null">
         alipayPic = #{record.alipaypic,jdbcType=VARCHAR},
@@ -368,7 +368,7 @@
     set id = #{record.id,jdbcType=BIGINT},
       username = #{record.username,jdbcType=VARCHAR},
       account = #{record.account,jdbcType=VARCHAR},
-      `type` = #{record.type,jdbcType=BIT},
+      `type` = #{record.type,jdbcType=SMALLINT},
       alipayPic = #{record.alipaypic,jdbcType=VARCHAR},
       wepayPic = #{record.wepaypic,jdbcType=VARCHAR},
       `size` = #{record.size,jdbcType=DOUBLE},
@@ -395,7 +395,7 @@
         account = #{account,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
-        `type` = #{type,jdbcType=BIT},
+        `type` = #{type,jdbcType=SMALLINT},
       </if>
       <if test="alipaypic != null">
         alipayPic = #{alipaypic,jdbcType=VARCHAR},
@@ -432,7 +432,7 @@
     update litemall_etm_payee
     set username = #{username,jdbcType=VARCHAR},
       account = #{account,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=BIT},
+      `type` = #{type,jdbcType=SMALLINT},
       alipayPic = #{alipaypic,jdbcType=VARCHAR},
       wepayPic = #{wepaypic,jdbcType=VARCHAR},
       `size` = #{size,jdbcType=DOUBLE},

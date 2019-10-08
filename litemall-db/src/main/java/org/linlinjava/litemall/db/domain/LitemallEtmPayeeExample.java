@@ -671,7 +671,7 @@ public class LitemallEtmPayeeExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeEqualTo(Boolean value) {
+        public Criteria andTypeEqualTo(Short value) {
             addCriterion("`type` =", value, "type");
             return (Criteria) this;
         }
@@ -687,7 +687,7 @@ public class LitemallEtmPayeeExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotEqualTo(Boolean value) {
+        public Criteria andTypeNotEqualTo(Short value) {
             addCriterion("`type` <>", value, "type");
             return (Criteria) this;
         }
@@ -703,7 +703,7 @@ public class LitemallEtmPayeeExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThan(Boolean value) {
+        public Criteria andTypeGreaterThan(Short value) {
             addCriterion("`type` >", value, "type");
             return (Criteria) this;
         }
@@ -719,7 +719,7 @@ public class LitemallEtmPayeeExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andTypeGreaterThanOrEqualTo(Short value) {
             addCriterion("`type` >=", value, "type");
             return (Criteria) this;
         }
@@ -735,7 +735,7 @@ public class LitemallEtmPayeeExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThan(Boolean value) {
+        public Criteria andTypeLessThan(Short value) {
             addCriterion("`type` <", value, "type");
             return (Criteria) this;
         }
@@ -751,7 +751,7 @@ public class LitemallEtmPayeeExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThanOrEqualTo(Boolean value) {
+        public Criteria andTypeLessThanOrEqualTo(Short value) {
             addCriterion("`type` <=", value, "type");
             return (Criteria) this;
         }
@@ -767,22 +767,22 @@ public class LitemallEtmPayeeExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeIn(List<Boolean> values) {
+        public Criteria andTypeIn(List<Short> values) {
             addCriterion("`type` in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotIn(List<Boolean> values) {
+        public Criteria andTypeNotIn(List<Short> values) {
             addCriterion("`type` not in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeBetween(Boolean value1, Boolean value2) {
+        public Criteria andTypeBetween(Short value1, Short value2) {
             addCriterion("`type` between", value1, value2, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andTypeNotBetween(Short value1, Short value2) {
             addCriterion("`type` not between", value1, value2, "type");
             return (Criteria) this;
         }

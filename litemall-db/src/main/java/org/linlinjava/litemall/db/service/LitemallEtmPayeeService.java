@@ -14,8 +14,8 @@ import java.util.List;
 
 @Service
 public class LitemallEtmPayeeService {
-    private final Column[] result = new Column[]{Column.id, Column.username, Column.size, Column.account,
-            Column.alipaypic,Column.wepaypic,Column.addTime};//,Column.type
+    private final Column[] result = new Column[]{Column.id, Column.username, Column.size, Column.account,Column.type,
+            Column.alipaypic,Column.wepaypic,Column.addTime,Column.updateTime};
     @Resource
     private LitemallEtmPayeeMapper adminMapper;
     @Resource
