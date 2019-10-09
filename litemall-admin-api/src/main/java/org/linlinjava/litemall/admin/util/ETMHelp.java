@@ -1,5 +1,6 @@
 package org.linlinjava.litemall.admin.util;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -29,8 +30,9 @@ public class ETMHelp {
 	public static final String COLLECTIONS_ADDRESS = "AFgqezrZEhLWUftzvyZTt6UWAGddGuYkNk";
 	
 	private static final String COLLECTIONS_SECRET = "inmate ceiling wear never breeze exit economy citizen false tape category stereo";
-	
-	
+
+	private static final String ETM_ORDER_SECRET = "awful cool oblige cliff coast route useless become assist title knock balance";
+	private static final String ETM_ORDER_ADDRESS = "A3n3qhNFEHXUtnWSx8sRjyZAhJgE7daAex";
 	private final Log logger = LogFactory.getLog(ETMHelp.class);
 	
 	/**
@@ -79,14 +81,44 @@ public class ETMHelp {
 		
 		Gson gson = new Gson();
 		String req_body = gson.toJson(params);
-		System.out.println(req_body);
 		String result = HttpUtil.sendPut(URL_DAPP_TRANSACTIONS, req_body);
 		
 		return result;
 	}
-	
 
-	
+	/**
+	 * etm 支付
+	 * @param address
+	 * @return
+	 */
+	public static Map<String,String> pay( String address, String amount ){
+
+
+		List<Object> arg_list = new ArrayList<>();
+		arg_list.add(address);
+		arg_list.add(amount);
+		arg_list.add(1);
+		arg_list.add("pay");
+		Gson gson = new Gson();
+		String arg_json = gson.toJson(arg_list);
+
+		String result = unsigned(ETM_ORDER_SECRET,"0",1000,arg_json);
+
+		return JacksonUtil.toMap(result);
+	}
+
+	/**
+	 * Dapp余额
+	 * @param address
+	 * @return
+	 */
+	public static Map<String,String> getDappBalance(String address) {
+
+
+		String result = HttpUtil.sendGet(URL_HOST + "/api/dapps/"+DAPP_ID+"/sugram/balance?address="+ address, "");
+
+		return JacksonUtil.toMap(result);
+	}
 	
 	public static void main(String[] args) {
 		
@@ -128,9 +160,13 @@ public class ETMHelp {
 //		System.out.println(checkAccount("A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q"));
 //		getEtmPriceOkex();
 		//String result = HttpUtil.sendGet("http://47.111.160.173:4096/api/accounts/getBalance?address=A5J8ofziMprcqEktm5i2nKoRNZwLADMN9q", "");
-
-		System.out.println(newAccount());
-		
+//		System.out.println(getDappBalance("AM7JMnGf7BsZSLgUZfkCZ7eoANN5yYnanH"));
+//
+//		String _1etm="100000000";
+//		BigInteger amount =new BigInteger(_1etm).multiply(new BigInteger("1.00")) ;
+//		System.out.println(pay("AM7JMnGf7BsZSLgUZfkCZ7eoANN5yYnanH",amount.toString()));
+//		System.out.println(getDappBalance("AM7JMnGf7BsZSLgUZfkCZ7eoANN5yYnanH"));
+//
 	}
 
 }

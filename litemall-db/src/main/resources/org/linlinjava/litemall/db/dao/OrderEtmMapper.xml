@@ -20,6 +20,9 @@
             <if test="order.price != null">
                 price = #{order.price,jdbcType=DECIMAL},
             </if>
+            <if test="order.transactionId != null">
+                `transaction_id` = #{order.transactionId,jdbcType=VARCHAR},
+            </if>
             <if test="order.cost != null">
                 cost = #{order.cost,jdbcType=DECIMAL},
             </if>

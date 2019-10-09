@@ -20,5 +20,6 @@ public class AdminResponseCode {
     public static final Integer ROLE_NAME_EXIST = 640;
     public static final Integer ROLE_SUPER_SUPERMISSION = 641;
     public static final Integer ROLE_USER_EXIST = 642;
-
+    public static final int PAY_CODE_FAIL= 750;
+    public static final int PAY_CODE_UPDATE_FAIL= 751;
 }

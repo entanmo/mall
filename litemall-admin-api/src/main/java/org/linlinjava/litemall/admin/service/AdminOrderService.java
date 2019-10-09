@@ -8,6 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.admin.util.AdminResponseCode;
 import org.linlinjava.litemall.admin.util.ETMHelp;
+import org.linlinjava.litemall.admin.web.EtmPayeeController;
 import org.linlinjava.litemall.core.notify.NotifyService;
 import org.linlinjava.litemall.core.notify.NotifyType;
 import org.linlinjava.litemall.core.util.JacksonUtil;
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -267,14 +269,31 @@ public class AdminOrderService {
         if (order == null) {
             return ResponseUtil.badArgument();
         }
-
+        LitemallUser litemallUser = userService.findById(order.getUserId());
+        if(litemallUser == null){
+            return ResponseUtil.fail(ORDER_CONFIRM_NOT_ALLOWED, "找不到用户信息");
+        }
         OrderEtmHandleOption handleOption = OrderEtmUtil.build(order);
         if (!handleOption.isVerify()) {
             return ResponseUtil.fail(ORDER_CONFIRM_NOT_ALLOWED, "订单不能确认");
         }
 
-        order.setOrderStatus(OrderEtmUtil.STATUS_CONFIRM);
-        order.setVerifyTime(LocalDateTime.now());
+        String _1etm="100000000";
+        BigInteger amount =order.getSize().multiply(new BigDecimal(_1etm)).toBigInteger();
+        Map<String, String> result =  ETMHelp.pay(litemallUser.getAddress(),amount.toString());
+
+        if("true".equals(result.get("success"))) {
+            order.setOrderStatus(OrderEtmUtil.STATUS_CONFIRM);
+            order.setVerifyTime(LocalDateTime.now());
+            order.setTransactionId(result.get("transactionId"));
+//            logger.debug(result);
+        }else{
+            String msg = "";
+            if("Error: Apply transaction error: Error: Insufficient balance".equals(result.get("error"))) {
+                msg = "基金账号余额不足";
+            }
+            return ResponseUtil.fail(PAY_CODE_FAIL,"etm 支付失败: " + msg);
+        }
         if (orderEtmService.updateWithOptimisticLocker(order) == 0) {
             return ResponseUtil.updatedDateExpired();
         }
