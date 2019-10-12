@@ -37,7 +37,7 @@ public class EtmPayeeController {
     private LogHelper logHelper;
 
     @RequiresPermissions("admin:payee:list")
-    @RequiresPermissionsDesc(menu = {"etm交易管理", "etm支付账号管理"}, button = "查询")
+    @RequiresPermissionsDesc(menu = {"法币交易", "支付账号"}, button = "查询")
     @GetMapping("/list")
     public Object list(String username,
                        @RequestParam(defaultValue = "1") Integer page,
@@ -64,7 +64,7 @@ public class EtmPayeeController {
     }
 
     @RequiresPermissions("admin:payee:create")
-    @RequiresPermissionsDesc(menu = {"etm交易管理", "etm支付账号管理"}, button = "添加")
+    @RequiresPermissionsDesc(menu = {"法币交易", "支付账号"}, button = "添加")
     @PostMapping("/create")
     public Object create(@RequestBody LitemallEtmPayee admin) {
         Object error = validate(admin);
@@ -88,7 +88,7 @@ public class EtmPayeeController {
     }
 
     @RequiresPermissions("admin:payee:read")
-    @RequiresPermissionsDesc(menu = {"etm交易管理", "etm支付账号管理"}, button = "详情")
+    @RequiresPermissionsDesc(menu = {"法币交易", "支付账号"}, button = "详情")
     @GetMapping("/read")
     public Object read(@NotNull Long id) {
         LitemallEtmPayee admin = etmPayeeService.findById(id);
@@ -96,7 +96,7 @@ public class EtmPayeeController {
     }
 
     @RequiresPermissions("admin:payee:update")
-    @RequiresPermissionsDesc(menu = {"etm交易管理", "etm支付账号管理"}, button = "编辑")
+    @RequiresPermissionsDesc(menu = {"法币交易", "支付账号"}, button = "编辑")
     @PostMapping("/update")
     public Object update(@RequestBody LitemallEtmPayee admin) {
         Object error = validate(admin);
@@ -121,7 +121,7 @@ public class EtmPayeeController {
     }
 
     @RequiresPermissions("admin:payee:delete")
-    @RequiresPermissionsDesc(menu = {"etm交易管理", "etm支付账号管理"}, button = "删除")
+    @RequiresPermissionsDesc(menu = {"法币交易", "支付账号"}, button = "删除")
     @PostMapping("/delete")
     public Object delete(@RequestBody LitemallEtmPayee admin) {
           Long anotherAdminId = admin.getId();

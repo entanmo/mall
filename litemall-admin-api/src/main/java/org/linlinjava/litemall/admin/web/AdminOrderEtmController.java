@@ -37,7 +37,7 @@ public class AdminOrderEtmController {
      * @return
      */
     @RequiresPermissions("admin:orderetm:list")
-    @RequiresPermissionsDesc(menu = {"etm交易管理", "订单管理"}, button = "查询")
+    @RequiresPermissionsDesc(menu = {"法币交易", "订单管理"}, button = "查询")
     @GetMapping("/list")
     public Object list(
                          String orderSn,
@@ -56,7 +56,7 @@ public class AdminOrderEtmController {
      * @return
      */
     @RequiresPermissions("admin:orderetm:read")
-    @RequiresPermissionsDesc(menu = {"etm交易管理", "订单管理"}, button = "详情")
+    @RequiresPermissionsDesc(menu = {"法币交易", "订单管理"}, button = "详情")
     @GetMapping("/detail")
     public Object detail(@NotNull Integer id) {
         return ResponseUtil.ok(orderEtmService.orderInfo(id));
@@ -75,13 +75,13 @@ public class AdminOrderEtmController {
 //        return orderEtmService.deleteById(body);
 //    }
     @RequiresPermissions("admin:orderetm:verify")
-    @RequiresPermissionsDesc(menu = {"etm交易管理", "订单管理"}, button = "订单审核")
+    @RequiresPermissionsDesc(menu = {"法币交易", "订单管理"}, button = "审核")
     @PostMapping("verify")
     public Object confirm(@RequestBody String body) {
         return adminOrderService.verify(body);
     }
     @RequiresPermissions("admin:orderetm:reject")
-    @RequiresPermissionsDesc(menu = {"etm交易管理", "订单管理"}, button = "订单打回")
+    @RequiresPermissionsDesc(menu = {"法币交易", "订单管理"}, button = "打回")
     @PostMapping("reject")
     public Object reject(@RequestBody String body) {
         return adminOrderService.reject(body);
