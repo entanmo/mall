@@ -76,13 +76,13 @@ public class AdminOrderEtmController {
 //    }
     @RequiresPermissions("admin:orderetm:verify")
     @RequiresPermissionsDesc(menu = {"法币交易", "订单管理"}, button = "审核")
-    @PostMapping("verify")
+    @PostMapping("/verify")
     public Object confirm(@RequestBody String body) {
         return adminOrderService.verify(body);
     }
     @RequiresPermissions("admin:orderetm:reject")
     @RequiresPermissionsDesc(menu = {"法币交易", "订单管理"}, button = "打回")
-    @PostMapping("reject")
+    @PostMapping("/reject")
     public Object reject(@RequestBody String body) {
         return adminOrderService.reject(body);
     }
