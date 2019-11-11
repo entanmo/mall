@@ -20,10 +20,10 @@ import com.google.gson.Gson;
 
 public class ETMHelp {
 	
-	private static final String URL_HOST = "http://47.111.160.173:4096";
+	private static final String URL_HOST = "http://20.188.242.113:4098";
 	//private static final String URL_HOST = "http://192.168.2.58:4096";
 	
-	public static final String DAPP_ID ="f304169790def442a0f0451347f13b6aadbe12305da59fc2a7c2d81cb94cb27a";
+	public static final String DAPP_ID ="00c3f32a74aa733f9f8d84ff7143abcc50b5c6da652496025517c0d955528316";
 	//public static final String DAPP_ID ="351eeae3766ad08b5219a5fc707cbd54ab2f1c97e94d2c57e65576a357806190";
 	
 	private static final String URL_NEW_ACCOUNT = URL_HOST + "/api/accounts/new";

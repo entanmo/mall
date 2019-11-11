@@ -204,40 +204,100 @@ public class WxAuthController {
      * @param request 请求对象
      * @return 登录结果
      */
-    @RequestMapping("login_by_xianliao")
-    public Object loginByAuth(@RequestBody String code, HttpServletRequest request) {
-        logger.info("xianliao code:" + code);
+//    @RequestMapping("login_by_xianliao")
+//    public Object loginByAuth(@RequestBody String code, HttpServletRequest request) {
+//        logger.info("xianliao code:" + code);
+//
+//        if (code == null) {
+//            return ResponseUtil.badArgument();
+//        }
+//
+//        String CODE = JacksonUtil.parseString(code, "code");
+//        UserInfo userInfo = XianLiaoRequest.getAuthUserInfo(CODE);
+//        if (userInfo == null) {
+//            return ResponseUtil.badArgument();
+//        }
+//
+//        String openId = userInfo.getOpenId();
+//        LitemallUser user = userService.queryByOid(openId);
+//        if (user == null) {
+//            Map<String, String> etmAccount = ETMHelp.newAccount();
+//            logger.info("ETMHelp etmAccount:" + etmAccount);
+//
+//            user = new LitemallUser();
+//            user.setUsername(openId);
+//            user.setPassword(openId);
+//            user.setWeixinOpenid(openId);
+//            user.setAvatar(userInfo.getAvatarUrl());
+//            user.setNickname(userInfo.getNickName());
+//            user.setGender(userInfo.getGender());
+//
+//            user.setUserLevel((byte) 0);
+//            user.setStatus((byte) 0);
+//            user.setLastLoginTime(LocalDateTime.now());
+//            user.setLastLoginIp(IpUtil.getIpAddr(request));
+//            user.setSecret(etmAccount.get("secret"));
+//            user.setAddress(etmAccount.get("address"));
+//
+//            logger.info("LitemallUser user:" + user);
+//            userService.add(user);
+//
+//            // 新用户发送注册优惠券
+//            // couponAssignService.assignForRegister(user.getId());
+//        } else {
+//            user.setLastLoginTime(LocalDateTime.now());
+//            user.setLastLoginIp(IpUtil.getIpAddr(request));
+//            if (userService.updateById(user) == 0) {
+//                return ResponseUtil.updatedDataFailed();
+//            }
+//        }
+//
+//        // token
+//        String token = UserTokenManager.generateToken(user.getId());
+//
+//        Map<Object, Object> result = new HashMap<Object, Object>();
+//        result.put("token", token);
+//        result.put("userInfo", userInfo);
+//        return ResponseUtil.ok(result);
+//    }
+	
+	    /**
+     * 钱包登录
+     *
+     * @param body    请求内容，{ body: xxx}
+     * @param request 请求对象
+     * @return 登录结果
+     */
+	@RequestMapping("login_by_wallet")
+	public Object loginByAuth(@RequestBody String body, HttpServletRequest request) {
+        
 
-        if (code == null) {
-            return ResponseUtil.badArgument();
-        }
+    	 String secret = JacksonUtil.parseString(body, "secret");
+         String address = JacksonUtil.parseString(body, "address");
+    	
+         if (StringUtils.isEmpty(secret) || StringUtils.isEmpty(address) ) {
+             return ResponseUtil.badArgument();
+         }
+       
 
-        String CODE = JacksonUtil.parseString(code, "code");
-        UserInfo userInfo = XianLiaoRequest.getAuthUserInfo(CODE);
-        if (userInfo == null) {
-            return ResponseUtil.badArgument();
-        }
-
-        String openId = userInfo.getOpenId();
+        String openId = address;
         LitemallUser user = userService.queryByOid(openId);
-        if (user == null) {
-            Map<String, String> etmAccount = ETMHelp.newAccount();
-            logger.info("ETMHelp etmAccount:" + etmAccount);
+        if (user == null) {         
 
             user = new LitemallUser();
             user.setUsername(openId);
             user.setPassword(openId);
             user.setWeixinOpenid(openId);
-            user.setAvatar(userInfo.getAvatarUrl());
-            user.setNickname(userInfo.getNickName());
-            user.setGender(userInfo.getGender());
+            user.setAvatar("");
+            user.setNickname("");
+            user.setGender((byte) 0);
 
             user.setUserLevel((byte) 0);
             user.setStatus((byte) 0);
             user.setLastLoginTime(LocalDateTime.now());
             user.setLastLoginIp(IpUtil.getIpAddr(request));
-            user.setSecret(etmAccount.get("secret"));
-            user.setAddress(etmAccount.get("address"));
+            user.setSecret(secret);
+            user.setAddress(address);
 
             logger.info("LitemallUser user:" + user);
             userService.add(user);
@@ -254,13 +314,16 @@ public class WxAuthController {
 
         // token
         String token = UserTokenManager.generateToken(user.getId());
+        
+        UserInfo userInfo = new UserInfo();
+        userInfo.setNickName(user.getNickname());
+        userInfo.setAvatarUrl(user.getAvatar());
 
         Map<Object, Object> result = new HashMap<Object, Object>();
         result.put("token", token);
         result.put("userInfo", userInfo);
         return ResponseUtil.ok(result);
     }
-
     /**
      * 微博授权回调
      */
