@@ -21,7 +21,7 @@
         <commons-lang3.version>3.7</commons-lang3.version>
         <commons-collections.version>3.2.2</commons-collections.version>
         <logback.version>1.2.3</logback.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <guava.version>27.1-jre</guava.version>
         <codec.version>1.12</codec.version>
         <compress.version>1.18</compress.version>
