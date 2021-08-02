@@ -24,7 +24,7 @@
         <junit.version>4.12</junit.version>
         <guava.version>27.1-jre</guava.version>
         <codec.version>1.12</codec.version>
-        <compress.version>1.18</compress.version>
+        <compress.version>1.21</compress.version>
     </properties>
 
     <dependencies>
